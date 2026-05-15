@@ -1,0 +1,1968 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Examens Blancs — TechWeb S2 🎯</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@400;500;700;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    corePlugins: { preflight: false },
+    theme: {
+      extend: {
+        screens: { xs: '475px' }
+      }
+    }
+  };
+</script>
+<style>
+:root {
+  --bg:        #080c18;
+  --surface:   #0f1523;
+  --surface2:  #162032;
+  --surface3:  #1c2a40;
+  --border:    #1e2d45;
+  --border2:   #253550;
+  --php:       #8b5cf6;
+  --php-light: #a78bfa;
+  --php-bg:    rgba(139,92,246,0.12);
+  --sql:       #06b6d4;
+  --sql-light: #67e8f9;
+  --sql-bg:    rgba(6,182,212,0.12);
+  --css:       #f59e0b;
+  --css-light: #fcd34d;
+  --css-bg:    rgba(245,158,11,0.12);
+  --pdo:       #10b981;
+  --pdo-light: #34d399;
+  --pdo-bg:    rgba(16,185,129,0.12);
+  --sec:       #ef4444;
+  --sec-light: #f87171;
+  --sec-bg:    rgba(239,68,68,0.12);
+  --tp:        #f97316;
+  --tp-light:  #fb923c;
+  --tp-bg:     rgba(249,115,22,0.12);
+  --text:      #e2e8f0;
+  --muted:     #8896ae;
+  --code-bg:   #060a12;
+  --gold:      #fbbf24;
+  --green:     #22c55e;
+  --red:       #f87171;
+  --blue:      #60a5fa;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Cairo', 'Tajawal', sans-serif;
+  line-height: 1.85;
+  direction: rtl;
+  font-size: 15px;
+  overflow-x: hidden;
+}
+strong { color: var(--gold); }
+pre, code {
+  font-family: 'Fira Code', monospace;
+}
+pre, .out-box, .tbl {
+  direction: ltr;
+  unicode-bidi: isolate;
+  text-align: left;
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+pre {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  white-space: pre;
+  word-break: normal;
+  font-size: clamp(0.68rem, 2.8vw, 0.8rem);
+  line-height: 1.65;
+  margin: 0.7rem 0;
+}
+pre::-webkit-scrollbar,
+.tbl::-webkit-scrollbar,
+.out-box::-webkit-scrollbar {
+  height: 6px;
+}
+pre::-webkit-scrollbar-thumb,
+.tbl::-webkit-scrollbar-thumb,
+.out-box::-webkit-scrollbar-thumb {
+  background: var(--border2);
+  border-radius: 4px;
+}
+code {
+  direction: ltr;
+  unicode-bidi: isolate;
+  background: rgba(255,255,255,0.08);
+  padding: 0.15em 0.42em;
+  border-radius: 5px;
+  font-size: 0.83em;
+  max-width: 100%;
+  overflow-x: auto;
+  word-break: break-word;
+}
+.out-box {
+  background: #04070f;
+  border: 1px dashed #22c55e;
+  border-radius: 8px;
+  padding: 0.65rem 1rem;
+  font-family: 'Fira Code', monospace;
+  font-size: clamp(0.68rem, 2.8vw, 0.8rem);
+  color: #4ade80;
+  margin: 0.4rem 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.out-label {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin-bottom: 0.25rem;
+  margin-top: 0.5rem;
+}
+
+/* ── HERO ── */
+.hero {
+  background: linear-gradient(135deg, #07091a 0%, #12103a 45%, #07091a 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 3.5rem 2rem 2.5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 30% 50%, rgba(139,92,246,0.14) 0%, transparent 55%),
+    radial-gradient(ellipse at 70% 50%, rgba(6,182,212,0.10) 0%, transparent 55%);
+  pointer-events: none;
+}
+.hero h1 {
+  font-weight: 900;
+  font-size: clamp(1.7rem, 4vw, 3rem);
+  background: linear-gradient(90deg, #a78bfa 0%, #67e8f9 45%, #fcd34d 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.6rem;
+  position: relative;
+}
+.hero-sub { color: var(--muted); font-size: 0.95rem; margin-bottom: 1.8rem; position: relative; }
+.badge-row { display: flex; justify-content: center; gap: 0.6rem; flex-wrap: wrap; position: relative; margin-bottom: 1.4rem; }
+.badge {
+  padding: 0.3rem 1rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+.b-php { background: var(--php-bg); color: var(--php-light); border: 1px solid rgba(139,92,246,0.4); }
+.b-sql { background: var(--sql-bg); color: var(--sql-light); border: 1px solid rgba(6,182,212,0.4); }
+.b-css { background: var(--css-bg); color: var(--css-light); border: 1px solid rgba(245,158,11,0.4); }
+.b-pdo { background: var(--pdo-bg); color: var(--pdo-light); border: 1px solid rgba(16,185,129,0.4); }
+.b-sec { background: var(--sec-bg); color: var(--sec-light); border: 1px solid rgba(239,68,68,0.4); }
+
+/* ── EXAM NAV TABS ── */
+.exam-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 0.75rem;
+  background: rgba(8,12,24,0.96);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  backdrop-filter: blur(14px);
+}
+.page-switch {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.45rem 1rem;
+  border-radius: 10px;
+  font-weight: 800;
+  font-size: 0.82rem;
+  text-decoration: none;
+  border: 1px solid rgba(139, 92, 246, 0.55);
+  background: linear-gradient(135deg, rgba(139,92,246,0.2), rgba(6,182,212,0.12));
+  color: var(--php-light);
+  transition: all 0.2s;
+  white-space: nowrap;
+  font-family: inherit;
+  flex: 1 1 100%;
+  max-width: 100%;
+}
+@media (min-width: 640px) {
+  .page-switch { flex: 0 1 auto; max-width: none; }
+}
+.page-switch:hover {
+  border-color: var(--php-light);
+  color: #fff;
+  box-shadow: 0 4px 18px rgba(139, 92, 246, 0.3);
+}
+.tab-btn {
+  padding: 0.45rem 1.2rem;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--muted);
+  font-family: 'Cairo', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.tab-btn:hover { background: var(--surface2); color: var(--text); border-color: var(--border2); }
+.tab-btn.active { background: var(--php-bg); color: var(--php-light); border-color: var(--php); }
+.tab-btn.e2.active { background: var(--sql-bg); color: var(--sql-light); border-color: var(--sql); }
+.tab-btn.e3.active { background: var(--css-bg); color: var(--css-light); border-color: var(--css); }
+.tab-btn.e4.active { background: var(--pdo-bg); color: var(--pdo-light); border-color: var(--pdo); }
+
+/* ── EXAM PAGE ── */
+.exam-page { display: none; }
+.exam-page.active { display: block; }
+
+.wrap {
+  max-width: 1000px;
+  margin: 0 auto;
+  width: 100%;
+  min-width: 0;
+  padding: 1.25rem 1rem;
+}
+@media (min-width: 640px) {
+  .wrap { padding: 1.75rem 1.5rem; }
+}
+
+/* ── EXAM HEADER ── */
+.exam-header {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.5rem 2rem;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+.exam-title { font-size: 1.4rem; font-weight: 900; }
+.exam-meta { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 0.5rem; }
+.exam-meta span {
+  font-size: 0.82rem;
+  color: var(--muted);
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  padding: 0.25rem 0.8rem;
+  border-radius: 8px;
+}
+.exam-meta span strong { color: var(--text); }
+.barme-badge {
+  background: var(--php-bg);
+  color: var(--php-light);
+  border: 1px solid var(--php);
+  border-radius: 10px;
+  padding: 0.5rem 1.1rem;
+  font-weight: 800;
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
+/* ── SECTION INSIDE EXAM ── */
+.ex-section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.5rem 1.6rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  overflow: visible;
+  min-width: 0;
+  max-width: 100%;
+}
+.ex-section::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 3px; height: 100%;
+  border-radius: 0 16px 16px 0;
+}
+.ex-section.php::before { background: var(--php); }
+.ex-section.sql::before { background: var(--sql); }
+.ex-section.css::before { background: var(--css); }
+.ex-section.pdo::before { background: var(--pdo); }
+.ex-section.sec::before { background: var(--sec); }
+.ex-section.tp::before  { background: var(--tp); }
+
+.sec-num {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  padding: 0.2rem 0.75rem;
+  border-radius: 999px;
+  margin-bottom: 0.7rem;
+}
+.sec-num.php { background: var(--php-bg); color: var(--php-light); border: 1px solid var(--php); }
+.sec-num.sql { background: var(--sql-bg); color: var(--sql-light); border: 1px solid var(--sql); }
+.sec-num.css { background: var(--css-bg); color: var(--css-light); border: 1px solid var(--css); }
+.sec-num.pdo { background: var(--pdo-bg); color: var(--pdo-light); border: 1px solid var(--pdo); }
+.sec-num.sec { background: var(--sec-bg); color: var(--sec-light); border: 1px solid var(--sec); }
+.sec-num.tp  { background: var(--tp-bg);  color: var(--tp-light);  border: 1px solid var(--tp); }
+
+.sec-title {
+  font-size: 1.1rem;
+  font-weight: 900;
+  margin-bottom: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* ── QUESTIONS ── */
+.q-block {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.2rem;
+  margin-bottom: 0.9rem;
+  min-width: 0;
+  max-width: 100%;
+  overflow: visible;
+}
+.q-num {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: var(--muted);
+  margin-bottom: 0.3rem;
+  letter-spacing: 0.05em;
+}
+.q-text {
+  font-weight: 700;
+  font-size: 0.92rem;
+  margin-bottom: 0.6rem;
+}
+.q-points {
+  display: inline-block;
+  background: var(--surface3);
+  color: var(--gold);
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 0.12rem 0.5rem;
+  border-radius: 6px;
+  margin-right: 0.4rem;
+}
+
+/* ── QCM OPTIONS ── */
+.qcm-opts {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin: 0.5rem 0;
+}
+.qcm-opt {
+  background: var(--surface3);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.15s;
+  direction: rtl;
+}
+.qcm-opt:hover { background: rgba(255,255,255,0.04); border-color: var(--border2); }
+
+/* ── TABLE ── */
+.tbl {
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  margin: 0.7rem 0;
+  max-width: 100%;
+  border-radius: 8px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border2) transparent;
+}
+.tbl table {
+  width: max-content;
+  min-width: 100%;
+  border-collapse: collapse;
+  font-size: 0.86rem;
+  direction: rtl;
+  text-align: right;
+}
+@media (max-width: 768px) {
+  .tbl table { min-width: 480px; }
+  table { font-size: 0.8rem; }
+  th, td { padding: 0.5rem 0.65rem; }
+  .tbl::after,
+  pre::after {
+    content: '← اسحب لرؤية باقي المحتوى';
+    display: block;
+    font-size: 0.65rem;
+    color: var(--muted);
+    text-align: center;
+    padding-top: 0.35rem;
+    direction: rtl;
+    font-family: 'Cairo', sans-serif;
+  }
+}
+table { width: 100%; border-collapse: collapse; font-size: 0.86rem; }
+th {
+  background: var(--surface2);
+  padding: 0.6rem 1rem;
+  text-align: right;
+  font-weight: 800;
+  border-bottom: 2px solid var(--border);
+}
+td {
+  padding: 0.55rem 1rem;
+  border-bottom: 1px solid rgba(30,45,69,0.5);
+  vertical-align: top;
+}
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: rgba(255,255,255,0.015); }
+.tc { font-family: 'Fira Code', monospace; direction: ltr; text-align: left; font-size: 0.78rem; }
+.tg { color: var(--green); font-weight: 700; }
+.tr { color: var(--red); font-weight: 700; }
+.ty { color: var(--gold); font-weight: 700; }
+
+/* ── ALERT ── */
+.alert {
+  border-radius: 10px;
+  padding: 0.8rem 1.1rem;
+  margin: 0.7rem 0;
+  font-size: 0.86rem;
+  display: flex;
+  gap: 0.65rem;
+  align-items: flex-start;
+}
+.alert .ai { font-size: 1.1rem; flex-shrink: 0; margin-top: 0.05rem; }
+.a-info    { background: var(--sql-bg);  border-right: 3px solid var(--sql); }
+.a-warn    { background: var(--css-bg);  border-right: 3px solid var(--css); }
+.a-danger  { background: var(--sec-bg);  border-right: 3px solid var(--sec); }
+.a-success { background: var(--pdo-bg);  border-right: 3px solid var(--pdo); }
+.a-php     { background: var(--php-bg);  border-right: 3px solid var(--php); }
+
+/* ── CORRECTION TOGGLE ── */
+.corr-btn {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  padding: 0.35rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Cairo', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  transition: all 0.18s;
+  margin-top: 0.6rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.corr-btn:hover { background: var(--surface3); color: var(--text); border-color: var(--border2); }
+.corr-btn.open { background: var(--pdo-bg); color: var(--pdo-light); border-color: var(--pdo); }
+.corr-box { display: none; margin-top: 0.8rem; }
+.corr-box.open { display: block; }
+
+/* ── SHOW ALL CORRECTIONS ── */
+.show-all-btn {
+  display: block;
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto 2rem;
+  padding: 0.7rem 1.5rem;
+  background: linear-gradient(90deg, var(--pdo), var(--sql));
+  color: #fff;
+  font-family: 'Cairo', sans-serif;
+  font-weight: 900;
+  font-size: 0.95rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.show-all-btn:hover { opacity: 0.88; }
+
+/* ── SCORE BOX ── */
+.score-box {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.2rem 1.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.score-label { font-size: 0.85rem; color: var(--muted); font-weight: 700; }
+.score-val { font-size: 1.8rem; font-weight: 900; color: var(--gold); }
+.score-out { font-size: 0.9rem; color: var(--muted); }
+
+/* ── DIVIDER ── */
+hr.divider {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border2), transparent);
+  margin: 2rem 0;
+}
+
+/* ── PILL ── */
+.pill {
+  display: inline-block;
+  padding: 0.12rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  margin: 0.1rem;
+}
+.pp { background: var(--php-bg); color: var(--php-light); }
+.ps { background: var(--sql-bg); color: var(--sql-light); }
+.pc { background: var(--css-bg); color: var(--css-light); }
+.pd { background: var(--pdo-bg); color: var(--pdo-light); }
+.pk { background: var(--sec-bg); color: var(--sec-light); }
+
+/* ── VF BADGES ── */
+.vf-badge {
+  display: inline-block;
+  padding: 0.15rem 0.7rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  margin-right: 0.4rem;
+}
+.vrai  { background: rgba(34,197,94,0.15);  color: var(--green); border: 1px solid rgba(34,197,94,0.4); }
+.faux  { background: rgba(248,113,113,0.15); color: var(--red);   border: 1px solid rgba(248,113,113,0.4); }
+
+/* ── SCENARIO BLOCK ── */
+.scenario {
+  background: rgba(6,182,212,0.07);
+  border: 1px solid rgba(6,182,212,0.2);
+  border-radius: 12px;
+  padding: 1rem 1.2rem;
+  margin: 0.6rem 0;
+  font-size: 0.88rem;
+}
+.scenario-title {
+  font-weight: 800;
+  color: var(--sql-light);
+  margin-bottom: 0.4rem;
+  font-size: 0.9rem;
+}
+
+</style>
+</head>
+<body>
+
+<!-- ═══════ HERO ═══════ -->
+<div class="hero">
+  <h1>📝 Examens Blancs — TechWeb S2</h1>
+  <p class="hero-sub">4 امتحانات بيضاء كاملة — بأسلوب الأستاذ الحقيقي — مع تصحيح مفصل</p>
+  <div class="badge-row">
+    <span class="badge b-php">⚡ PHP</span>
+    <span class="badge b-sql">🗄️ SQL</span>
+    <span class="badge b-css">🎨 CSS</span>
+    <span class="badge b-pdo">🔐 PDO</span>
+    <span class="badge b-sec">🛡️ Sécurité</span>
+  </div>
+  <div style="font-size:.82rem;color:var(--muted);position:relative">⏱️ مدة كل امتحان: ساعة ونصف &nbsp;|&nbsp; النقطة الكاملة: 20 &nbsp;|&nbsp; لا تنظر في التصحيح قبل الإجابة!</div>
+</div>
+
+<!-- ═══════ TABS ═══════ -->
+<div class="exam-tabs">
+  <a href="index2.html" class="page-switch">📚 المراجعة الشاملة</a>
+  <button class="tab-btn active" onclick="switchExam(0)">📋 الامتحان الأول</button>
+  <button class="tab-btn e2"     onclick="switchExam(1)">📋 الامتحان الثاني</button>
+  <button class="tab-btn e3"     onclick="switchExam(2)">📋 الامتحان الثالث</button>
+  <button class="tab-btn e4"     onclick="switchExam(3)">📋 الامتحان الرابع</button>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     EXAMEN 1
+═══════════════════════════════════════════════════ -->
+<div class="exam-page active" id="exam-0">
+<div class="wrap">
+
+  <!-- Header -->
+  <div class="exam-header">
+    <div>
+      <div class="exam-title">📋 الامتحان الأول — Examen Blanc N°1</div>
+      <div class="exam-meta">
+        <span>⏱️ المدة: <strong>ساعة ونصف</strong></span>
+        <span>📅 السنة الثالثة — 2025/2026</span>
+        <span>🎓 تقنية الويب 1</span>
+      </div>
+    </div>
+    <div class="barme-badge">20 نقطة</div>
+  </div>
+
+  <button class="show-all-btn" onclick="toggleAllCorr('exam-0')">🔍 إظهار/إخفاء كل التصحيحات</button>
+
+  <!-- ══ PARTIE 1: Définitions / VF / QCM ══ -->
+  <div class="ex-section php">
+    <span class="sec-num php">الجزء الأول — 7 نقاط</span>
+    <div class="sec-title">❓ Questions (Définition – Vrai/Faux – QCM)</div>
+
+    <!-- Q1 Définition -->
+    <div class="q-block">
+      <div class="q-num">السؤال 1 <span class="q-points">1.5 ن</span></div>
+      <div class="q-text">تعريف: ما هو PHP؟ على أي طرف يعمل؟ وما الفرق بين كود PHP وكود HTML من حيث مكان التنفيذ؟</div>
+      <button class="corr-btn" onclick="toggleCorr(this)">▼ عرض التصحيح</button>
+      <div class="corr-box">
+        <div class="alert a-php">
+          <span class="ai">✅</span>
+          <span><strong>PHP</strong> (Hypertext Preprocessor) هي لغة برمجة server-side، تعمل على جهة الـ<strong> serveur</strong> (الخادم). يُنفَّذ كود PHP على الخادم وتُرسَل النتيجة للمتصفح كـ HTML. بعكس HTML الذي ينفذ في متصفح الزائر مباشرة (client-side). الملفات تنتهي بـ <code>.php</code></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q2 VF -->
+    <div class="q-block">
+      <div class="q-num">السؤال 2 <span class="q-points">2 ن</span></div>
+      <div class="q-text">صح/خطأ — قل صح أو خطأ مع التصحيح إذا كانت خاطئة:</div>
+      <div style="margin-top:.5rem">
+        <div style="margin-bottom:.5rem">① في PHP، كل سطر يجب أن ينتهي بـ <code>;</code> وإلا سيحدث خطأ.</div>
+        <div style="margin-bottom:.5rem">② المتغير في PHP يمكن أن يبدأ بحرف عادي مثل <code>nom = "Ali"</code>.</div>
+        <div style="margin-bottom:.5rem">③ <code>GET</code> أكثر أماناً من <code>POST</code> لإرسال بيانات حساسة.</div>
+        <div>④ داخل علامات الاقتباس المزدوجة <code>"..."</code> في PHP، يمكن وضع متغير وسيُحلَّل تلقائياً.</div>
+      </div>
+      <button class="corr-btn" onclick="toggleCorr(this)">▼ عرض التصحيح</button>
+      <div class="corr-box">
+        <div class="tbl">
+          <table>
+            <tr><th>#</th><th>الجواب</th><th>الشرح</th></tr>
+            <tr><td>①</td><td><span class="vf-badge vrai">صح ✅</span></td><td>الفاصلة المنقوطة <code>;</code> إجبارية في نهاية كل سطر PHP</td></tr>
+            <tr><td>②</td><td><span class="vf-badge faux">خطأ ❌</span></td><td>المتغير يجب أن يبدأ بـ <code>$</code> دائماً: <code>$nom = "Ali"</code></td></tr>
+            <tr><td>③</td><td><span class="vf-badge faux">خطأ ❌</span></td><td>POST أكثر أماناً لأن البيانات في جسم الطلب، أما GET فتظهر في URL</td></tr>
+            <tr><td>④</td><td><span class="vf-badge vrai">صح ✅</span></td><td><code>echo "اسمك $nom";</code> يطبع قيمة المتغير داخل النص مباشرة</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q3 QCM -->
+    <div class="q-block">
+      <div class="q-num">السؤال 3 <span class="q-points">1.5 ن</span></div>
+      <div class="q-text">QCM — اختر الإجابة الصحيحة:</div>
+      <div style="margin-top:.6rem">
+        <div style="margin-bottom:.8rem">
+          <div style="font-weight:700;margin-bottom:.3rem">① أي سطر PHP صحيح؟</div>
+          <div class="qcm-opts">
+            <div class="qcm-opt">A) <code>nom = "Ahmed";</code></div>
+            <div class="qcm-opt">B) <code>$nom = "Ahmed";</code></div>
+            <div class="qcm-opt">C) <code>$nom : "Ahmed";</code></div>
+            <div class="qcm-opt">D) <code>var nom = "Ahmed";</code></div>
+          </div>
+        </div>
+        <div style="margin-bottom:.8rem">
+          <div style="font-weight:700;margin-bottom:.3rem">② الـ Superglobal الذي نستخدمه لاسترجاع بيانات النموذج المرسلة بطريقة POST هو:</div>
+          <div class="qcm-opts">
+            <div class="qcm-opt">A) <code>$_GET</code></div>
+            <div class="qcm-opt">B) <code>$_SESSION</code></div>
+            <div class="qcm-opt">C) <code>$_POST</code></div>
+            <div class="qcm-opt">D) <code>$_REQUEST</code></div>
+          </div>
+        </div>
+        <div>
+          <div style="font-weight:700;margin-bottom:.3rem">③ ماذا تُرجع <code>5 === "5"</code> في PHP؟</div>
+          <div class="qcm-opts">
+            <div class="qcm-opt">A) true</div>
+            <div class="qcm-opt">B) false</div>
+            <div class="qcm-opt">C) خطأ في التشغيل</div>
+            <div class="qcm-opt">D) 1</div>
+          </div>
+        </div>
+      </div>
+      <button class="corr-btn" onclick="toggleCorr(this)">▼ عرض التصحيح</button>
+      <div class="corr-box">
+        <div class="tbl">
+          <table>
+            <tr><th>السؤال</th><th>الجواب</th><th>الشرح</th></tr>
+            <tr><td>①</td><td class="tg">B</td><td>المتغير يبدأ بـ <code>$</code> دائماً</td></tr>
+            <tr><td>②</td><td class="tg">C</td><td><code>$_POST</code> يحمل بيانات النموذج المرسلة بـ POST</td></tr>
+            <tr><td>③</td><td class="tg">B — false</td><td><code>===</code> يقارن النوع أيضاً. 5 رقم و "5" نص → أنواع مختلفة → false</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q4 Definition CSS -->
+    <div class="q-block">
+      <div class="q-num">السؤال 4 <span class="q-points">1 ن</span></div>
+      <div class="q-text">تعريف: ما الفرق بين <code>display: none</code> و <code>visibility: hidden</code> في CSS؟</div>
+      <button class="corr-btn" onclick="toggleCorr(this)">▼ عرض التصحيح</button>
+      <div class="corr-box">
+        <div class="tbl">
+          <table>
+            <tr><th>الخاصية</th><th>ماذا تفعل؟</th><th>هل يحتل مكاناً؟</th></tr>
+            <tr><td class="tc">display: none</td><td>يُزيل العنصر كلياً من الصفحة</td><td class="tr">لا ❌</td></tr>
+            <tr><td class="tc">visibility: hidden</td><td>يُخفي العنصر لكنه يبقى في مكانه</td><td class="tg">نعم، يبقى الفراغ ✅</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q5 دوال PHP -->
+    <div class="q-block">
+      <div class="q-num">السؤال 5 <span class="q-points">1 ن</span></div>
+      <div class="q-text">ما وظيفة كل دالة من هذه الدوال في PHP؟ أعطِ مثالاً قصيراً لكل واحدة:
+        <div style="margin-top:.5rem"><code>isset()</code> &nbsp;|&nbsp; <code>empty()</code> &nbsp;|&nbsp; <code>trim()</code> &nbsp;|&nbsp; <code>htmlspecialchars()</code></div>
+      </div>
+      <button class="corr-btn" onclick="toggleCorr(this)">▼ عرض التصحيح</button>
+      <div class="corr-box">
+        <div class="tbl">
+          <table>
+            <tr><th>الدالة</th><th>الوظيفة</th><th>مثال</th></tr>
+            <tr><td class="tc" style="color:var(--php-light)">isset()</td><td>تتحقق أن المتغير موجود وغير null</td><td class="tc">if(isset($_POST['nom']))</td></tr>
+            <tr><td class="tc" style="color:var(--php-light)">empty()</td><td>تتحقق أن المتغير فارغ (فارغ، 0، null، "")</td><td class="tc">if(!empty($_POST['nom']))</td></tr>
+            <tr><td class="tc" style="color:var(--php-light)">trim()</td><td>تُزيل المسافات الزائدة من بداية ونهاية النص</td><td class="tc">$nom = trim($_POST['nom']);</td></tr>
+            <tr><td class="tc" style="color:var(--sec-light)">htmlspecialchars()</td><td>تُحوّل الأحرف الخاصة لتمنع هجوم XSS</td><td class="tc">echo htmlspecialchars($msg);</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end partie 1 -->
+
+
+  <!-- ══ PARTIE 2: Exercices ══ -->
+  <div class="ex-section php">
+    <span class="sec-num php">الجزء الثاني — 8 نقاط</span>
+    <div class="sec-title">💻 Exercices (Application & Codage)</div>
+
+    <!-- EX 1: Qu'est-ce qu'il affiche -->
+    <div class="q-block">
+      <div class="q-num">التمرين 1 <span class="q-points">1.5 ن</span></div>
+      <div class="q-text">واش يطبع هذا الكود PHP؟</div>
+      <pre>&lt;?php
+$x = 10;
+$y = 3;
+echo $x % $y . "&lt;br&gt;";
+echo ($x == 10 && $y > 5) ? "صح" : "خطأ";
+?&gt;</pre>
+      <button class="corr-btn" onclick="toggleCorr(this)">▼ عرض التصحيح</button>
+      <div class="corr-box">
+        <div class="out-label">▶ OUTPUT</div>
+        <div class="out-box">1
+خطأ</div>
+        <div class="alert a-info">
+          <span class="ai">📖</span>
+          <span>① <code>10 % 3 = 1</code> (باقي القسمة)<br>② <code>$x == 10</code> صح، لكن <code>$y > 5</code> خطأ (3 ليس أكبر من 5). AND يحتاج كلا الشرطين → طبع "خطأ"</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- EX 2: Trouver l'erreur -->
+    <div class="q-block">
+      <div class="q-num">التمرين 2 <span class="q-points">1.5 ن</span></div>
+      <div class="q-text">أين الأخطاء في هذا الكود؟ صحّح جميعها:</div>
+      <pre>&lt;?php
+$age = 20
+if $age >= 18 {
+    echo "بالغ"
+}
+?&gt;</pre>
+      <button class="corr-btn" onclick="toggleCorr(this)">▼ عرض التصحيح</button>
+      <div class="corr-box">
+        <div class="alert a-danger">
+          <span class="ai">🚨</span>
+          <span>
+            <strong>3 أخطاء:</strong><br>
+            ① <code>$age = 20</code> → ينقصها <code>;</code> في النهاية<br>
+            ② <code>if $age >= 18</code> → ينقصها الأقواس: <code>if ($age >= 18)</code><br>
+            ③ <code>echo "بالغ"</code> → ينقصها <code>;</code> في النهاية
+          </span>
+        </div>
+        <div class="out-label">▶ الكود الصحيح:</div>
+        <pre>&lt;?php
+$age = 20;
+if ($age >= 18) {
+    echo "بالغ";
+}
+?&gt;</pre>
+      </div>
+    </div>
+
+    <!-- EX 3: foreach + HTML -->
+    <div class="q-block">
+      <div class="q-num">التمرين 3 <span class="q-points">2 ن</span></div>
+      <div class="q-text">اكتب كوداً PHP يعرض قائمة (ul/li) لهذه المدن: ["Alger", "Oran", "Constantine", "Annaba"] باستخدام <code>foreach</code>.</div>
+      <button class="corr-btn" onclick="toggleCorr(this)">▼ عرض التصحيح</button>
+      <div class="corr-box">
+        <pre>&lt;?php
+$villes = ["Alger", "Oran", "Constantine", "Annaba"];
+echo "&lt;ul&gt;";
+foreach ($villes as $ville) {
+    echo "&lt;li&gt;" . $ville . "&lt;/li&gt;";
+}
+echo "&lt;/ul&gt;";
+?&gt;</pre>
+        <div class="out-label">▶ OUTPUT</div>
+        <div class="out-box">&lt;ul&gt;&lt;li&gt;Alger&lt;/li&gt;&lt;li&gt;Oran&lt;/li&gt;&lt;li&gt;Constantine&lt;/li&gt;&lt;li&gt;Annaba&lt;/li&gt;&lt;/ul&gt;</div>
+      </div>
+    </div>
+
+    <!-- EX 4: SQL -->
+    <div class="q-block">
+      <div class="q-num">التمرين 4 <span class="q-points">1.5 ن</span></div>
+      <div class="q-text">عندنا جدول <code>etudiants(id, nom, note, ville)</code>. اكتب استعلام SQL يعرض أسماء الطلاب الذين نجحوا (note >= 10) مرتبين تنازلياً حسب النقطة.</div>
+      <button class="corr-btn" onclick="toggleCorr(this)">▼ عرض التصحيح</button>
+      <div class="corr-box">
+        <pre>SELECT nom, note
+FROM etudiants
+WHERE note >= 10
+ORDER BY note DESC;</pre>
+        <div class="alert a-info">
+          <span class="ai">📖</span>
+          <span><code>WHERE note >= 10</code> يصفي الناجحين فقط. <code>ORDER BY note DESC</code> يرتب تنازلياً (من الأعلى للأدنى)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- EX 5: CSS -->
+    <div class="q-block">
+      <div class="q-num">التمرين 5 <span class="q-points">1.5 ن</span></div>
+      <div class="q-text">هذا كود CSS — اشرح ماذا يفعل كل selector:</div>
+      <pre>ul > li { color: red; }
+h2 + p  { font-weight: bold; }
+p:not(.note) { font-size: 14px; }</pre>
+      <button class="corr-btn" onclick="toggleCorr(this)">▼ عرض التصحيح</button>
+      <div class="corr-box">
+        <div class="tbl">
+          <table>
+            <tr><th>Selector</th><th>الشرح</th></tr>
+            <tr><td class="tc">ul > li</td><td>يستهدف <code>li</code> الذي هو ابن <strong>مباشر</strong> لـ <code>ul</code> فقط (Child selector)</td></tr>
+            <tr><td class="tc">h2 + p</td><td>يستهدف <code>p</code> الذي يأتي <strong>مباشرة بعد</strong> <code>h2</code> (Adjacent sibling)</td></tr>
+            <tr><td class="tc">p:not(.note)</td><td>يستهدف كل <code>p</code> التي <strong>لا تحمل</strong> الـ class <code>.note</code></td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end partie 2 -->
+
+
+  <!-- ══ PARTIE 3: Scénarios ══ -->
+  <div class="ex-section sec">
+    <span class="sec-num sec">الجزء الثالث — 5 نقاط</span>
+    <div class="sec-title">🔍 Problèmes (Scénarios & Conception)</div>
+
+    <!-- Scénario 1 -->
+    <div class="q-block">
+      <div class="q-num">المشكلة 1 <span class="q-points">2 ن</span></div>
+      <div class="scenario">
+        <div class="scenario-title">📌 السيناريو:</div>
+        موقع تعليمي يسمح للمستخدمين بكتابة تعليقات. لاحظ المطوّر أن بعض المستخدمين يكتبون <code>&lt;script&gt;alert('hacked!')&lt;/script&gt;</code> في خانة التعليق، وعند عرضه تظهر نافذة خطر!
+      </div>
+      <div class="q-text">① ما نوع هذا الهجوم؟ &nbsp;&nbsp;② ما الحل البرمجي؟ اكتب السطر PHP الصحيح.</div>
+      <button class="corr-btn" onclick="toggleCorr(this)">▼ عرض التصحيح</button>
+      <div class="corr-box">
+        <div class="alert a-danger">
+          <span class="ai">🛡️</span>
+          <span><strong>① نوع الهجوم: XSS (Cross-Site Scripting)</strong><br>المهاجم يُدخل كود JavaScript في حقل نص ويُنفَّذ في متصفح المستخدمين الآخرين.</span>
+        </div>
+        <div class="alert a-success">
+          <span class="ai">✅</span>
+          <span><strong>② الحل:</strong> استخدام <code>htmlspecialchars()</code> قبل عرض أي بيانات مستخدم:</span>
+        </div>
+        <pre>// ❌ خطير:
+echo $_POST['comment'];
+
+// ✅ آمن:
+echo htmlspecialchars($_POST['comment'], ENT_QUOTES, 'UTF-8');
+// &lt;script&gt; تتحول إلى &amp;lt;script&amp;gt; — تظهر كنص وليس كـ HTML</pre>
+      </div>
+    </div>
+
+    <!-- Scénario 2: PDO -->
+    <div class="q-block">
+      <div class="q-num">المشكلة 2 <span class="q-points">3 ن</span></div>
+      <div class="scenario">
+        <div class="scenario-title">📌 السيناريو:</div>
+        لديك نموذج بحث في الموقع. المستخدم يُدخل اسمه ويُبحث عنه في قاعدة البيانات. الكود الحالي هو:
+        <pre style="margin-top:.5rem">$nom = $_POST['nom'];
+$sql = "SELECT * FROM users WHERE nom = '$nom'";</pre>
+      </div>
+      <div class="q-text">① ما المشكلة الأمنية؟ اشرحها. &nbsp;&nbsp;② اكتب الكود الصحيح باستخدام PDO.</div>
+      <button class="corr-btn" onclick="toggleCorr(this)">▼ عرض التصحيح</button>
+      <div class="corr-box">
+        <div class="alert a-danger">
+          <span class="ai">⚡</span>
+          <span><strong>① المشكلة: SQL Injection</strong><br>المهاجم يكتب في الحقل: <code>' OR '1'='1</code><br>الاستعلام يصبح: <code>WHERE nom = '' OR '1'='1'</code> → يُرجع كل المستخدمين!</span>
+        </div>
+        <div class="alert a-success">
+          <span class="ai">✅</span>
+          <span><strong>② الحل — PDO مع prepare/execute:</strong></span>
+        </div>
+        <pre>// ① الاتصال
+$pdo = new PDO("mysql:host=localhost;dbname=mydb", "root", "");
+
+// ② prepare — بدون البيانات الحقيقية
+$stmt = $pdo->prepare("SELECT * FROM users WHERE nom = :nom");
+
+// ③ execute — البيانات تُدخَل بأمان
+$stmt->execute([':nom' => $_POST['nom']]);
+
+// ④ جلب النتائج
+$users = $stmt->fetchAll();</pre>
+        <div class="alert a-info">
+          <span class="ai">📖</span>
+          <span>مع PDO، حتى لو كتب المهاجم <code>' OR '1'='1</code>، سيُعامَل كنص عادي وليس كـ SQL → الحماية الكاملة</span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end partie 3 -->
+
+</div>
+</div><!-- end exam-0 -->
+
+
+<!-- ═══════════════════════════════════════════════════
+     EXAMEN 2
+═══════════════════════════════════════════════════ -->
+<div class="exam-page" id="exam-1">
+<div class="wrap">
+
+  <div class="exam-header">
+    <div>
+      <div class="exam-title">📋 الامتحان الثاني — Examen Blanc N°2</div>
+      <div class="exam-meta">
+        <span>⏱️ المدة: <strong>ساعة ونصف</strong></span>
+        <span>📅 السنة الثالثة — 2025/2026</span>
+        <span>🎓 تقنية الويب 1</span>
+      </div>
+    </div>
+    <div class="barme-badge">20 نقطة</div>
+  </div>
+
+  <button class="show-all-btn" onclick="toggleAllCorr('exam-1')">🔍 إظهار/إخفاء كل التصحيحات</button>
+
+  <!-- PARTIE 1 -->
+  <div class="ex-section sql">
+    <span class="sec-num sql">الجزء الأول — 7 نقاط</span>
+    <div class="sec-title">❓ Questions (Définition – Vrai/Faux – QCM)</div>
+
+    <div class="q-block">
+      <div class="q-num">السؤال 1 <span class="q-points">1.5 ن</span></div>
+      <div class="q-text">تعريف: ما هو SQL Injection؟ اذكر طريقة واحدة فعلية يمكن للمهاجم استغلالها، وكيف نحمي منها؟</div>
+      <button class="corr-btn" onclick="toggleCorr(this)">▼ عرض التصحيح</button>
+      <div class="corr-box">
+        <div class="alert a-php">
+          <span class="ai">✅</span>
+          <span><strong>SQL Injection</strong>: هجوم يقوم فيه المهاجم بإدخال كود SQL في حقل نص النموذج لاختراق قاعدة البيانات.<br><br>
+          <strong>مثال:</strong> في حقل كلمة المرور يكتب: <code>' OR '1'='1</code> → يتجاوز التحقق تماماً.<br><br>
+          <strong>الحماية:</strong> استخدام PDO مع <code>prepare()</code> و <code>execute()</code> لفصل الكود SQL عن البيانات.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-num">السؤال 2 <span class="q-points">2 ن</span></div>
+      <div class="q-text">صح/خطأ — مع التصحيح إذا كانت خاطئة:</div>
+      <div style="margin-top:.5rem">
+        <div style="margin-bottom:.5rem">① في PHP، <code>foreach</code> تُستخدم لتكرار على المصفوفات (Arrays) فقط.</div>
+        <div style="margin-bottom:.5rem">② <code>while</code> مناسبة عندما نعرف عدد التكرارات مسبقاً.</div>
+        <div style="margin-bottom:.5rem">③ في switch، إذا نسينا <code>break</code>، سينفذ PHP الـ case التالي تلقائياً.</div>
+        <div>④ <code>$_GET['nom']</code> تُستخدم لقراءة بيانات نموذج مرسل بطريقة GET.</div>
+      </div>
+      <button class="corr-btn" onclick="toggleCorr(this)">▼ عرض التصحيح</button>
+      <div class="corr-box">
+        <div class="tbl">
+          <table>
+            <tr><th>#</th><th>الجواب</th><th>الشرح</th></tr>
+            <tr><td>①</td><td><span class="vf-badge vrai">صح ✅</span></td><td><code>foreach</code> مصممة للمصفوفات والكائنات القابلة للتكرار</td></tr>
+            <tr><td>②</td><td><span class="vf-badge faux">خطأ ❌</span></td><td><code>while</code> مناسبة عندما لا نعرف العدد. <code>for</code> هي للعدد المعروف</td></tr>
+            <tr><td>③</td><td><span class="vf-badge vrai">صح ✅</span></td><td>خطأ شائع جداً! بدون <code>break</code>، PHP ينفذ كل الـ cases التالية (fall-through)</td></tr>
+            <tr><td>④</td><td><span class="vf-badge vrai">صح ✅</span></td><td><code>$_GET['nom']</code> يقرأ قيمة الحقل <code>nom</code> من URL</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-num">السؤال 3 <span class="q-points">1.5 ن</span></div>
+      <div class="q-text">QCM — اختر الإجابة الصحيحة:</div>
+      <div style="margin-top:.6rem">
+        <div style="margin-bottom:.8rem">
+          <div style="font-weight:700;margin-bottom:.3rem">① أي CSS selector يستهدف كل العناصر داخل الصفحة؟</div>
+          <div class="qcm-opts">
+            <div class="qcm-opt">A) <code>all</code></div>
+            <div class="qcm-opt">B) <code>*</code></div>
+            <div class="qcm-opt">C) <code>body</code></div>
+            <div class="qcm-opt">D) <code>.all</code></div>
+          </div>
+        </div>
+        <div style="margin-bottom:.8rem">
+          <div style="font-weight:700;margin-bottom:.3rem">② أي دالة PDO تُستخدم لجلب صف واحد فقط من نتيجة الاستعلام؟</div>
+          <div class="qcm-opts">
+            <div class="qcm-opt">A) <code>fetchAll()</code></div>
+            <div class="qcm-opt">B) <code>execute()</code></div>
+            <div class="qcm-opt">C) <code>fetch()</code></div>
+            <div class="qcm-opt">D) <code>prepare()</code></div>
+          </div>
+        </div>
+        <div>
+          <div style="font-weight:700;margin-bottom:.3rem">③ ما الفرق بين <code>==</code> و <code>===</code> في PHP؟</div>
+          <div class="qcm-opts">
+            <div class="qcm-opt">A) لا فرق</div>
+            <div class="qcm-opt">B) <code>===</code> يقارن القيمة فقط</div>
+            <div class="qcm-opt">C) <code>===</code> يقارن القيمة والنوع معاً</div>
+            <div class="qcm-opt">D) <code>==</code> يقارن النوع فقط</div>
+          </div>
+        </div>
+      </div>
+      <button class="corr-btn" onclick="toggleCorr(this)">▼ عرض التصحيح</button>
+      <div class="corr-box">
+        <div class="tbl">
+          <table>
+            <tr><th>السؤال</th><th>الجواب</th><th>الشرح</th></tr>
+            <tr><td>①</td><td class="tg">B — <code>*</code></td><td>Universal selector — يستهدف كل العناصر</td></tr>
+            <tr><td>②</td><td class="tg">C — <code>fetch()</code></td><td>جلب صف واحد. <code>fetchAll()</code> لجلب كل النتائج</td></tr>
+            <tr><td>③</td><td class="tg">C</td><td><code>===</code> يتحقق من القيمة والنوع معاً (5 و "5" → false)</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-num">السؤال 4 <span class="q-points">2 ن</span></div>
+      <div class="q-text">ما نوع كل متغير في PHP؟ وما الفرق بين <code>==</code> و <code>===</code> في المقارنة؟ أعطِ مثالاً يوضح الفرق.</div>
+      <button class="corr-btn" onclick="toggleCorr(this)">▼ عرض التصحيح</button>
+      <div class="corr-box">
+        <div class="tbl">
+          <table>
+            <tr><th>المتغير</th><th>النوع</th></tr>
+            <tr><td class="tc">$nom = "Ahmed";</td><td>String — نص</td></tr>
+            <tr><td class="tc">$age = 25;</td><td>Integer — رقم صحيح</td></tr>
+            <tr><td class="tc">$prix = 9.99;</td><td>Float — رقم عشري</td></tr>
+            <tr><td class="tc">$ok = true;</td><td>Boolean — صح/خطأ</td></tr>
+            <tr><td class="tc">$tab = ["a","b"];</td><td>Array — مصفوفة</td></tr>
+          </table>
+        </div>
+        <div class="alert a-info" style="margin-top:.7rem">
+          <span class="ai">📖</span>
+          <span><strong>== مقابل ===:</strong><br>
+          <code>5 == "5"</code> → <strong>true</strong> (يقارن القيمة فقط — النوع لا يهم)<br>
+          <code>5 === "5"</code> → <strong>false</strong> (يقارن القيمة والنوع معاً — رقم ≠ نص)<br><br>
+          ننصح باستخدام <code>===</code> دائماً لتجنب أخطاء غير متوقعة.</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PARTIE 2 -->
+  <div class="ex-section sql">
+    <span class="sec-num sql">الجزء الثاني — 8 نقاط</span>
+    <div class="sec-title">💻 Exercices (Application & Codage)</div>
+
+    <div class="q-block">
+      <div class="q-num">التمرين 1 <span class="q-points">2 ن</span></div>
+      <div class="q-text">واش يطبع هذا الكود؟</div>
+      <pre>&lt;?php
+$notes = [15, 8, 12, 6, 18];
+$total = 0;
+foreach ($notes as $n) {
+    $total += $n;
+}
+$moy = $total / count($notes);
+echo "المعدل: " . $moy;
+?&gt;</pre>
+      <button class="corr-btn" onclick="toggleCorr(this)">▼ عرض التصحيح</button>
+      <div class="corr-box">
+        <div class="out-label">▶ OUTPUT</div>
+        <div class="out-box">المعدل: 11.8</div>
+        <div class="alert a-info">
+          <span class="ai">📖</span>
+          <span>المجموع: 15+8+12+6+18 = 59. عدد العناصر: <code>count($notes) = 5</code>. المعدل: 59/5 = <strong>11.8</strong></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-num">التمرين 2 <span class="q-points">1.5 ن</span></div>
+      <div class="q-text">اكتب كود PHP يطبع جدول مضاعفات الرقم 7 (من 7×1 إلى 7×10) باستخدام حلقة <code>for</code>.</div>
+      <button class="corr-btn" onclick="toggleCorr(this)">▼ عرض التصحيح</button>
+      <div class="corr-box">
+        <pre>&lt;?php
+for ($i = 1; $i &lt;= 10; $i++) {
+    echo "7 × " . $i . " = " . (7 * $i) . "&lt;br&gt;";
+}
+?&gt;</pre>
+        <div class="out-label">▶ OUTPUT (أول 3 أسطر)</div>
+        <div class="out-box">7 × 1 = 7
+7 × 2 = 14
+7 × 3 = 21
+...</div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-num">التمرين 3 — GET/POST <span class="q-points">2 ن</span></div>
+      <div class="q-text">
+        لديك نموذج HTML للبحث:
+        <pre style="margin-top:.5rem">&lt;form method="GET" action="search.php"&gt;
+  &lt;input type="text" name="mot"&gt;
+  &lt;button type="submit"&gt;بحث&lt;/button&gt;
+&lt;/form&gt;</pre>
+        اكتب ملف <code>search.php</code> الذي يتحقق أن الحقل ليس فارغاً ويعرض كلمة البحث بشكل آمن.
+      </div>
+      <button class="corr-btn" onclick="toggleCorr(this)">▼ عرض التصحيح</button>
+      <div class="corr-box">
+        <pre>&lt;?php
+if (isset($_GET['mot']) && !empty($_GET['mot'])) {
+    $mot = htmlspecialchars($_GET['mot'], ENT_QUOTES, 'UTF-8');
+    echo "نتائج البحث عن: &lt;strong&gt;" . $mot . "&lt;/strong&gt;";
+} else {
+    echo "الرجاء إدخال كلمة للبحث.";
+}
+?&gt;</pre>
+        <div class="alert a-success">
+          <span class="ai">✅</span>
+          <span><code>isset()</code> يتحقق أن المتغير موجود. <code>empty()</code> يتحقق أنه ليس فارغاً. <code>htmlspecialchars()</code> يحمي من XSS.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-num">التمرين 4 — SQL <span class="q-points">2.5 ن</span></div>
+      <div class="q-text">
+        جدول <code>produits(id, nom, prix, categorie, stock)</code><br>
+        اكتب الاستعلامات التالية:
+        <div style="margin-top:.5rem">① اعرض كل المنتجات التي سعرها أكثر من 1000 دج مرتبة تصاعدياً بالسعر.</div>
+        <div>② اعرض عدد المنتجات في كل فئة (categorie).</div>
+      </div>
+      <button class="corr-btn" onclick="toggleCorr(this)">▼ عرض التصحيح</button>
+      <div class="corr-box">
+        <pre>-- ①
+SELECT nom, prix
+FROM produits
+WHERE prix > 1000
+ORDER BY prix ASC;
+
+-- ②
+SELECT categorie, COUNT(*) AS nombre_produits
+FROM produits
+GROUP BY categorie;</pre>
+        <div class="alert a-info">
+          <span class="ai">📖</span>
+          <span><code>ORDER BY prix ASC</code>: تصاعدي (من الأرخص). <code>COUNT(*)</code>: يعد الصفوف. <code>GROUP BY</code>: يجمع حسب الفئة.</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PARTIE 3 -->
+  <div class="ex-section sec">
+    <span class="sec-num sec">الجزء الثالث — 5 نقاط</span>
+    <div class="sec-title">🔍 Problèmes (Scénarios & Conception)</div>
+
+    <div class="q-block">
+      <div class="q-num">المشكلة 1 <span class="q-points">2 ن</span></div>
+      <div class="scenario">
+        <div class="scenario-title">📌 السيناريو:</div>
+        موقع يسمح للمستخدم بتنزيل ملفات. المستخدم يُرسل اسم الملف عبر URL كالتالي: <code>download.php?file=rapport.pdf</code>. لاحظ المطوّر أن مهاجماً أرسل: <code>download.php?file=../../../etc/passwd</code> وتمكن من قراءة ملفات النظام!
+      </div>
+      <div class="q-text">① ما نوع هذا الهجوم؟ &nbsp;&nbsp;② كيف نحمي منه؟</div>
+      <button class="corr-btn" onclick="toggleCorr(this)">▼ عرض التصحيح</button>
+      <div class="corr-box">
+        <div class="alert a-danger">
+          <span class="ai">🚨</span>
+          <span><strong>① نوع الهجوم: Directory Traversal</strong><br>المهاجم يستخدم <code>../</code> للتنقل خارج المجلد المسموح وصولاً لملفات النظام الحساسة.</span>
+        </div>
+        <div class="alert a-success">
+          <span class="ai">✅</span>
+          <span><strong>② الحل:</strong> استخدام <code>basename()</code> لاستخراج اسم الملف فقط، و <code>realpath()</code> للتحقق من المسار الحقيقي:</span>
+        </div>
+        <pre>$file = basename($_GET['file']); // يُزيل أي ../
+$path = realpath("uploads/" . $file);
+// التحقق أن الملف داخل المجلد المسموح
+if (strpos($path, realpath("uploads/")) === 0) {
+    // آمن — يمكن تنزيله
+}</pre>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-num">المشكلة 2 <span class="q-points">3 ن</span></div>
+      <div class="scenario">
+        <div class="scenario-title">📌 السيناريو:</div>
+        لديك هذا النص مكتوب باللغتين PHP وHTML، ويحتوي على: كود PHP، وسوم HTML، حساب مجموع متغيرين، نتيجة الحساب، وخاتمة بخط Arial.
+      </div>
+      <div class="q-text">اكتب الكود الكامل (PHP + HTML) الذي يُنتج: متغيران ($a=5, $b=3)، عرض مجموعهما داخل HTML، والخاتمة بخط Arial.</div>
+      <button class="corr-btn" onclick="toggleCorr(this)">▼ عرض التصحيح</button>
+      <div class="corr-box">
+        <pre>&lt;?php
+$a = 5;
+$b = 3;
+$somme = $a + $b;
+?&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Calcul&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;الحساب&lt;/h1&gt;
+  &lt;p&gt;المتغير الأول: &lt;?php echo $a; ?&gt;&lt;/p&gt;
+  &lt;p&gt;المتغير الثاني: &lt;?php echo $b; ?&gt;&lt;/p&gt;
+  &lt;p&gt;المجموع: &lt;?php echo $somme; ?&gt;&lt;/p&gt;
+  &lt;p style="font-family: Arial;"&gt;
+    النتيجة هي &lt;?php echo $somme; ?&gt;
+  &lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+        <div class="out-label">▶ ما تراه في المتصفح:</div>
+        <div class="out-box">المتغير الأول: 5
+المتغير الثاني: 3
+المجموع: 8
+النتيجة هي 8</div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+</div><!-- end exam-1 -->
+
+
+<!-- ═══════════════════════════════════════════════════
+     EXAMEN 3
+═══════════════════════════════════════════════════ -->
+<div class="exam-page" id="exam-2">
+<div class="wrap">
+
+  <div class="exam-header">
+    <div>
+      <div class="exam-title">📋 الامتحان الثالث — Examen Blanc N°3</div>
+      <div class="exam-meta">
+        <span>⏱️ المدة: <strong>ساعة ونصف</strong></span>
+        <span>📅 السنة الثالثة — 2025/2026</span>
+        <span>🎓 تقنية الويب 1</span>
+      </div>
+    </div>
+    <div class="barme-badge">20 نقطة</div>
+  </div>
+
+  <button class="show-all-btn" onclick="toggleAllCorr('exam-2')">🔍 إظهار/إخفاء كل التصحيحات</button>
+
+  <!-- PARTIE 1 -->
+  <div class="ex-section css">
+    <span class="sec-num css">الجزء الأول — 7 نقاط</span>
+    <div class="sec-title">❓ Questions (Définition – Vrai/Faux – QCM)</div>
+
+    <div class="q-block">
+      <div class="q-num">السؤال 1 <span class="q-points">1.5 ن</span></div>
+      <div class="q-text">تعريف: ما هو PDO؟ ولماذا نستخدمه بدلاً من كتابة SQL مباشرة داخل المتغيرات؟</div>
+      <button class="corr-btn" onclick="toggleCorr(this)">▼ عرض التصحيح</button>
+      <div class="corr-box">
+        <div class="alert a-php">
+          <span class="ai">✅</span>
+          <span><strong>PDO (PHP Data Objects)</strong>: واجهة للتعامل مع قواعد البيانات بشكل آمن في PHP.<br><br>
+          نستخدمه لأنه يُطبّق مبدأ <strong>فصل كود SQL عن البيانات</strong> عبر <code>prepare()</code> و <code>execute()</code>، مما يمنع هجمات SQL Injection. بدون PDO، حقن المهاجم لكود SQL يُنفَّذ مباشرة.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-num">السؤال 2 <span class="q-points">2 ن</span></div>
+      <div class="q-text">صح/خطأ:</div>
+      <div style="margin-top:.5rem">
+        <div style="margin-bottom:.5rem">① <code>h2 + p</code> في CSS يستهدف كل <code>p</code> التي تأتي بعد <code>h2</code> مهما كان موضعها.</div>
+        <div style="margin-bottom:.5rem">② <code>htmlspecialchars()</code> تحمي من هجمات XSS.</div>
+        <div style="margin-bottom:.5rem">③ SQL بـ <code>ORDER BY nom DESC</code> يُرتب تصاعدياً حسب الاسم.</div>
+        <div>④ في نموذج HTML، <code>required</code> يجعل الحقل إجبارياً ولا يمكن إرسال النموذج بدونه.</div>
+      </div>
+      <button class="corr-btn" onclick="toggleCorr(this)">▼ عرض التصحيح</button>
+      <div class="corr-box">
+        <div class="tbl">
+          <table>
+            <tr><th>#</th><th>الجواب</th><th>الشرح</th></tr>
+            <tr><td>①</td><td><span class="vf-badge faux">خطأ ❌</span></td><td><code>h2 + p</code> يستهدف <code>p</code> المجاورة مباشرة لـ <code>h2</code> فقط (adjacent sibling). للكل نستخدم <code>h2 ~ p</code></td></tr>
+            <tr><td>②</td><td><span class="vf-badge vrai">صح ✅</span></td><td>تُحوّل <code>&lt;&gt;&amp;"</code> إلى entities آمنة فلا يُنفَّذ أي كود JS</td></tr>
+            <tr><td>③</td><td><span class="vf-badge faux">خطأ ❌</span></td><td><code>DESC</code> = تنازلي (من الأكبر للأصغر). التصاعدي هو <code>ASC</code></td></tr>
+            <tr><td>④</td><td><span class="vf-badge vrai">صح ✅</span></td><td><code>required</code> attribute يمنع إرسال النموذج إذا بقي الحقل فارغاً</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-num">السؤال 3 <span class="q-points">1.5 ن</span></div>
+      <div class="q-text">QCM — اختر الإجابة الصحيحة:</div>
+      <div style="margin-top:.6rem">
+        <div style="margin-bottom:.8rem">
+          <div style="font-weight:700;margin-bottom:.3rem">① أي CSS selector يستهدف <code>p</code> مجاور مباشر لـ <code>h2</code>؟</div>
+          <div class="qcm-opts">
+            <div class="qcm-opt">A) <code>h2 p</code></div>
+            <div class="qcm-opt">B) <code>h2 > p</code></div>
+            <div class="qcm-opt">C) <code>h2 + p</code></div>
+            <div class="qcm-opt">D) <code>h2 ~ p</code></div>
+          </div>
+        </div>
+        <div style="margin-bottom:.8rem">
+          <div style="font-weight:700;margin-bottom:.3rem">② ما وظيفة <code>prepare()</code> في PDO؟</div>
+          <div class="qcm-opts">
+            <div class="qcm-opt">A) تنفذ الاستعلام مباشرة</div>
+            <div class="qcm-opt">B) تحضر الاستعلام بدون البيانات الحقيقية</div>
+            <div class="qcm-opt">C) تجلب نتائج الاستعلام</div>
+            <div class="qcm-opt">D) تفتح اتصالاً بقاعدة البيانات</div>
+          </div>
+        </div>
+        <div>
+          <div style="font-weight:700;margin-bottom:.3rem">③ أي هجوم يهدف لتنفيذ JavaScript في متصفح الضحية؟</div>
+          <div class="qcm-opts">
+            <div class="qcm-opt">A) SQL Injection</div>
+            <div class="qcm-opt">B) Brute Force</div>
+            <div class="qcm-opt">C) CSRF</div>
+            <div class="qcm-opt">D) XSS</div>
+          </div>
+        </div>
+      </div>
+      <button class="corr-btn" onclick="toggleCorr(this)">▼ عرض التصحيح</button>
+      <div class="corr-box">
+        <div class="tbl">
+          <table>
+            <tr><th>السؤال</th><th>الجواب</th><th>الشرح</th></tr>
+            <tr><td>①</td><td class="tg">C — <code>h2 + p</code></td><td>Adjacent sibling = مجاور مباشر</td></tr>
+            <tr><td>②</td><td class="tg">B</td><td>تحضر الاستعلام فقط — البيانات تأتي في <code>execute()</code></td></tr>
+            <tr><td>③</td><td class="tg">D — XSS</td><td>Cross-Site Scripting = حقن JS في متصفح الضحية</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-num">السؤال 4 <span class="q-points">2 ن</span></div>
+      <div class="q-text">اقرأ هذه المواقف وحدد نوع الهجوم في كل حالة، ثم اذكر طريقة الحماية:
+        <div style="margin-top:.5rem;margin-bottom:.3rem">① مستخدم يكتب في حقل التعليق: <code>&lt;script&gt;alert('vol de cookies')&lt;/script&gt;</code></div>
+        <div style="margin-bottom:.3rem">② في خانة اسم المستخدم: <code>' OR '1'='1' --</code></div>
+        <div style="margin-bottom:.3rem">③ برنامج يجرب آلاف كلمات المرور تلقائياً حتى ينجح بالدخول</div>
+        <div>④ مستخدم يُرسل طلب رابط مزيف من موقع آخر يُنفذ عملية باسمه</div>
+      </div>
+      <button class="corr-btn" onclick="toggleCorr(this)">▼ عرض التصحيح</button>
+      <div class="corr-box">
+        <div class="tbl">
+          <table>
+            <tr><th>#</th><th>نوع الهجوم</th><th>الحماية</th></tr>
+            <tr><td>①</td><td class="tr">XSS (Cross-Site Scripting)</td><td class="tg"><code>htmlspecialchars()</code> قبل عرض أي بيانات مستخدم</td></tr>
+            <tr><td>②</td><td class="tr">SQL Injection</td><td class="tg">PDO مع <code>prepare()</code> و <code>execute()</code></td></tr>
+            <tr><td>③</td><td class="tr">Brute Force</td><td class="tg">تحديد عدد المحاولات + CAPTCHA</td></tr>
+            <tr><td>④</td><td class="tr">CSRF (Cross-Site Request Forgery)</td><td class="tg">Token CSRF داخل كل نموذج</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PARTIE 2 -->
+  <div class="ex-section css">
+    <span class="sec-num css">الجزء الثاني — 8 نقاط</span>
+    <div class="sec-title">💻 Exercices (Application & Codage)</div>
+
+    <div class="q-block">
+      <div class="q-num">التمرين 1 <span class="q-points">2 ن</span></div>
+      <div class="q-text">واش يطبع هذا الكود؟</div>
+      <pre>&lt;?php
+$couleur = "bleu";
+switch ($couleur) {
+    case "rouge":
+        echo "Stop";
+        break;
+    case "vert":
+        echo "Go";
+        break;
+    case "bleu":
+        echo "Info";
+    case "jaune":
+        echo "Attention";
+        break;
+    default:
+        echo "Inconnu";
+}
+?&gt;</pre>
+      <button class="corr-btn" onclick="toggleCorr(this)">▼ عرض التصحيح</button>
+      <div class="corr-box">
+        <div class="out-label">▶ OUTPUT</div>
+        <div class="out-box">InfoAttention</div>
+        <div class="alert a-danger">
+          <span class="ai">⚠️</span>
+          <span><strong>انتبه!</strong> في الـ case "bleu" ليس هناك <code>break</code>! لذلك PHP ينفذ case "bleu" ويطبع "Info" ثم يتابع وينفذ case "jaune" ويطبع "Attention". هذا خطأ شائع جداً في الامتحان!</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-num">التمرين 2 <span class="q-points">2 ن</span></div>
+      <div class="q-text">اكتب كود PHP باستخدام حلقة <code>while</code> يطبع الأرقام الزوجية من 2 إلى 20 فقط.</div>
+      <button class="corr-btn" onclick="toggleCorr(this)">▼ عرض التصحيح</button>
+      <div class="corr-box">
+        <pre>&lt;?php
+$i = 2;
+while ($i &lt;= 20) {
+    echo $i . " ";
+    $i += 2;
+}
+?&gt;</pre>
+        <div class="out-label">▶ OUTPUT</div>
+        <div class="out-box">2 4 6 8 10 12 14 16 18 20</div>
+        <div class="alert a-info">
+          <span class="ai">📖</span>
+          <span>نبدأ من 2 ونزيد بـ 2 في كل مرة (<code>$i += 2</code>). بديل أيضاً: نبدأ من 0 ونكتب <code>if ($i % 2 == 0)</code> داخل الحلقة.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-num">التمرين 3 — PDO <span class="q-points">2.5 ن</span></div>
+      <div class="q-text">اشرح سطراً سطراً ماذا يفعل هذا الكود:</div>
+      <pre>&lt;?php
+$pdo = new PDO("mysql:host=localhost;dbname=ecole", "root", "");
+$stmt = $pdo->prepare("SELECT nom, note FROM etudiants WHERE note >= :min");
+$stmt->execute([':min' => 10]);
+$admis = $stmt->fetchAll();
+foreach ($admis as $row) {
+    echo $row['nom'] . " — " . $row['note'] . "&lt;br&gt;";
+}
+?&gt;</pre>
+      <button class="corr-btn" onclick="toggleCorr(this)">▼ عرض التصحيح</button>
+      <div class="corr-box">
+        <div class="tbl">
+          <table>
+            <tr><th>السطر</th><th>الشرح</th></tr>
+            <tr><td class="tc">new PDO(...)</td><td>فتح اتصال آمن بقاعدة بيانات "ecole" على localhost</td></tr>
+            <tr><td class="tc">prepare(...)</td><td>تحضير استعلام SELECT لجلب الطلاب الناجحين — <code>:min</code> placeholder آمن</td></tr>
+            <tr><td class="tc">execute([':min' => 10])</td><td>تنفيذ الاستعلام مع إدخال القيمة 10 مكان الـ placeholder — آمن من SQL Injection</td></tr>
+            <tr><td class="tc">fetchAll()</td><td>جلب كل نتائج الاستعلام في مصفوفة</td></tr>
+            <tr><td class="tc">foreach(...)</td><td>التكرار على كل طالب ناجح وعرض اسمه ونقطته</td></tr>
+          </table>
+        </div>
+        <div class="alert a-success">
+          <span class="ai">✅</span>
+          <span>هذا الكود يعرض أسماء ونقاط كل الطلاب الذين نقطتهم >= 10</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-num">التمرين 4 — CSS <span class="q-points">1.5 ن</span></div>
+      <div class="q-text">اكتب كود CSS يُطبق على جميع مقاطع <code>p</code> داخل <code>article</code> التي تحتوي على صورة <code>img</code>، باستثناء <code>p</code> ذات الـ class <code>.note</code>:</div>
+      <button class="corr-btn" onclick="toggleCorr(this)">▼ عرض التصحيح</button>
+      <div class="corr-box">
+        <pre>article:has(img) p:not(.note) {
+    color: #333;
+    font-size: 16px;
+    line-height: 1.8;
+}</pre>
+        <div class="tbl">
+          <table>
+            <tr><th>الجزء</th><th>الشرح</th></tr>
+            <tr><td class="tc">article:has(img)</td><td>يستهدف <code>article</code> يحتوي على <code>img</code></td></tr>
+            <tr><td class="tc">p:not(.note)</td><td>يستهدف كل <code>p</code> ما عدا التي عندها class <code>.note</code></td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PARTIE 3 -->
+  <div class="ex-section sec">
+    <span class="sec-num sec">الجزء الثالث — 5 نقاط</span>
+    <div class="sec-title">🔍 Problèmes (Scénarios & Conception)</div>
+
+    <div class="q-block">
+      <div class="q-num">المشكلة 1 <span class="q-points">2 ن</span></div>
+      <div class="scenario">
+        <div class="scenario-title">📌 السيناريو:</div>
+        لديك نموذج بحث يرسل البيانات بطريقة GET. المطوّر لاحظ أن المستخدمين يكتبون أشياء مثل <code>&lt;b&gt;test&lt;/b&gt;</code> في خانة البحث، وهي تظهر بخط عريض في النتيجة بدلاً من الظهور كنص!
+      </div>
+      <div class="q-text">① ما المشكلة الأمنية؟ ② اكتب الكود PHP الصحيح لعرض كلمة البحث بشكل آمن.</div>
+      <button class="corr-btn" onclick="toggleCorr(this)">▼ عرض التصحيح</button>
+      <div class="corr-box">
+        <div class="alert a-danger">
+          <span class="ai">🛡️</span>
+          <span><strong>① المشكلة: XSS (Cross-Site Scripting)</strong><br>
+          الكود PHP يعرض بيانات المستخدم مباشرة دون تنقية، فيُفسَّر HTML/JS كأكواد وليس كنص.</span>
+        </div>
+        <div class="alert a-success">
+          <span class="ai">✅</span>
+          <span><strong>② الحل — htmlspecialchars():</strong></span>
+        </div>
+        <pre>&lt;?php
+if (isset($_GET['mot']) && !empty($_GET['mot'])) {
+    // ❌ خطير — يُنفذ HTML:
+    // echo $_GET['mot'];
+
+    // ✅ آمن — يعرضه كنص:
+    $mot = htmlspecialchars($_GET['mot'], ENT_QUOTES, 'UTF-8');
+    echo "نتائج البحث عن: &lt;strong&gt;" . $mot . "&lt;/strong&gt;";
+}
+?&gt;</pre>
+        <div class="alert a-info">
+          <span class="ai">📖</span>
+          <span><code>&lt;b&gt;test&lt;/b&gt;</code> تتحول إلى <code>&amp;lt;b&amp;gt;test&amp;lt;/b&amp;gt;</code> وتُعرض كنص عادي وليس كـ HTML.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-num">المشكلة 2 <span class="q-points">3 ن</span></div>
+      <div class="scenario">
+        <div class="scenario-title">📌 السيناريو:</div>
+        يريد المطوّر إنشاء صفحة تسجيل دخول (Login). النموذج يأخذ email وكلمة مرور. يريد التحقق من المستخدم في قاعدة البيانات بشكل آمن.
+      </div>
+      <div class="q-text">① أي طريقة GET أم POST للنموذج؟ لماذا؟ &nbsp;&nbsp;② اكتب كود PHP + PDO للتحقق من المستخدم.</div>
+      <button class="corr-btn" onclick="toggleCorr(this)">▼ عرض التصحيح</button>
+      <div class="corr-box">
+        <div class="alert a-info">
+          <span class="ai">📖</span>
+          <span><strong>① POST بالضرورة</strong>: لأن كلمة المرور بيانات حساسة ويجب أن تكون مخفية في جسم الطلب. GET تضعها في URL ويمكن رؤيتها في التاريخ والـ logs!</span>
+        </div>
+        <pre>&lt;form method="POST" action="login.php"&gt;
+  &lt;input type="email" name="email" required&gt;
+  &lt;input type="password" name="pass" required&gt;
+  &lt;button type="submit"&gt;دخول&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;?php
+// login.php
+if (isset($_POST['email']) && isset($_POST['pass'])) {
+    $pdo = new PDO("mysql:host=localhost;dbname=mydb", "root", "");
+    
+    $stmt = $pdo->prepare(
+        "SELECT * FROM users WHERE email = :email"
+    );
+    $stmt->execute([':email' => $_POST['email']]);
+    $user = $stmt->fetch();
+    
+    if ($user && $user['pass'] === $_POST['pass']) {
+        echo "مرحباً " . htmlspecialchars($user['nom']);
+    } else {
+        echo "بيانات خاطئة!";
+    }
+}
+?&gt;</pre>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+</div><!-- end exam-2 -->
+
+
+<!-- ═══════════════════════════════════════════════════
+     EXAMEN 4
+═══════════════════════════════════════════════════ -->
+<div class="exam-page" id="exam-3">
+<div class="wrap">
+
+  <div class="exam-header">
+    <div>
+      <div class="exam-title">📋 الامتحان الرابع — Examen Blanc N°4</div>
+      <div class="exam-meta">
+        <span>⏱️ المدة: <strong>ساعة ونصف</strong></span>
+        <span>📅 السنة الثالثة — 2025/2026</span>
+        <span>🎓 تقنية الويب 1</span>
+      </div>
+    </div>
+    <div class="barme-badge">20 نقطة</div>
+  </div>
+
+  <button class="show-all-btn" onclick="toggleAllCorr('exam-3')">🔍 إظهار/إخفاء كل التصحيحات</button>
+
+  <!-- PARTIE 1 -->
+  <div class="ex-section pdo">
+    <span class="sec-num pdo">الجزء الأول — 7 نقاط</span>
+    <div class="sec-title">❓ Questions (Définition – Vrai/Faux – QCM)</div>
+
+    <div class="q-block">
+      <div class="q-num">السؤال 1 <span class="q-points">1.5 ن</span></div>
+      <div class="q-text">تعريف: ما هو PDO في PHP؟ ما الفرق بين <code>fetch()</code> و <code>fetchAll()</code>؟ ومتى نستخدم كل واحدة؟</div>
+      <button class="corr-btn" onclick="toggleCorr(this)">▼ عرض التصحيح</button>
+      <div class="corr-box">
+        <div class="alert a-php">
+          <span class="ai">✅</span>
+          <span><strong>PDO (PHP Data Objects)</strong>: واجهة PHP للتعامل مع قواعد البيانات بشكل آمن. يستخدم <code>prepare()</code> و <code>execute()</code> لفصل كود SQL عن البيانات، مما يمنع هجمات SQL Injection.</span>
+        </div>
+        <div class="tbl" style="margin-top:.7rem">
+          <table>
+            <tr><th>الدالة</th><th>ماذا تُرجع؟</th><th>متى نستخدمها؟</th></tr>
+            <tr>
+              <td class="tc" style="color:var(--pdo-light)">fetch()</td>
+              <td>صف واحد فقط (Array)</td>
+              <td>عندما نتوقع نتيجة واحدة — مثل: البحث بالـ id أو التحقق من مستخدم</td>
+            </tr>
+            <tr>
+              <td class="tc" style="color:var(--pdo-light)">fetchAll()</td>
+              <td>كل النتائج (Array من Arrays)</td>
+              <td>عندما نتوقع أكثر من نتيجة — مثل: عرض قائمة الطلاب</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-num">السؤال 2 <span class="q-points">2 ن</span></div>
+      <div class="q-text">صح/خطأ:</div>
+      <div style="margin-top:.5rem">
+        <div style="margin-bottom:.5rem">① <code>fetchAll()</code> في PDO تُرجع مصفوفة بكل نتائج الاستعلام.</div>
+        <div style="margin-bottom:.5rem">② <code>&lt;img&gt;</code> في HTML لها وسم إغلاق <code>&lt;/img&gt;</code>.</div>
+        <div style="margin-bottom:.5rem">③ في CSS، <code>margin: 0 auto</code> تُوسّط العنصر أفقياً.</div>
+        <div>④ <code>CSRF</code> هو هجوم يُنفذ فيه المهاجم طلبات باسم مستخدم حقيقي دون علمه.</div>
+      </div>
+      <button class="corr-btn" onclick="toggleCorr(this)">▼ عرض التصحيح</button>
+      <div class="corr-box">
+        <div class="tbl">
+          <table>
+            <tr><th>#</th><th>الجواب</th><th>الشرح</th></tr>
+            <tr><td>①</td><td><span class="vf-badge vrai">صح ✅</span></td><td><code>fetchAll()</code> تُرجع Array مع كل النتائج</td></tr>
+            <tr><td>②</td><td><span class="vf-badge faux">خطأ ❌</span></td><td><code>&lt;img&gt;</code> وسم ذاتي الإغلاق (void element) — لا يحتاج <code>&lt;/img&gt;</code></td></tr>
+            <tr><td>③</td><td><span class="vf-badge vrai">صح ✅</span></td><td><code>margin: 0 auto</code>: الهامش العلوي/السفلي = 0، اليميني/اليساري = تلقائي → توسيط</td></tr>
+            <tr><td>④</td><td><span class="vf-badge vrai">صح ✅</span></td><td>CSRF (Cross-Site Request Forgery) يخدع متصفح الضحية لإرسال طلبات غير مرغوبة</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-num">السؤال 3 <span class="q-points">1.5 ن</span></div>
+      <div class="q-text">QCM:</div>
+      <div style="margin-top:.6rem">
+        <div style="margin-bottom:.8rem">
+          <div style="font-weight:700;margin-bottom:.3rem">① أي CSS pseudo-class تستهدف الأول عنصر ابن في أبيه؟</div>
+          <div class="qcm-opts">
+            <div class="qcm-opt">A) <code>:first-element</code></div>
+            <div class="qcm-opt">B) <code>:first-child</code></div>
+            <div class="qcm-opt">C) <code>:first-type</code></div>
+            <div class="qcm-opt">D) <code>::first-child</code></div>
+          </div>
+        </div>
+        <div style="margin-bottom:.8rem">
+          <div style="font-weight:700;margin-bottom:.3rem">② أي استعلام SQL يُزيل جدول بالكامل مع هيكله؟</div>
+          <div class="qcm-opts">
+            <div class="qcm-opt">A) <code>DELETE TABLE etudiants</code></div>
+            <div class="qcm-opt">B) <code>REMOVE etudiants</code></div>
+            <div class="qcm-opt">C) <code>DROP TABLE etudiants</code></div>
+            <div class="qcm-opt">D) <code>CLEAR TABLE etudiants</code></div>
+          </div>
+        </div>
+        <div>
+          <div style="font-weight:700;margin-bottom:.3rem">③ متى نستخدم <code>while</code> بدل <code>for</code>؟</div>
+          <div class="qcm-opts">
+            <div class="qcm-opt">A) عندما نعرف عدد التكرارات مسبقاً</div>
+            <div class="qcm-opt">B) عندما نريد تكرار Array</div>
+            <div class="qcm-opt">C) عندما لا نعرف عدد التكرارات وننتظر شرطاً</div>
+            <div class="qcm-opt">D) لا فرق بينهما</div>
+          </div>
+        </div>
+      </div>
+      <button class="corr-btn" onclick="toggleCorr(this)">▼ عرض التصحيح</button>
+      <div class="corr-box">
+        <div class="tbl">
+          <table>
+            <tr><th>السؤال</th><th>الجواب</th><th>الشرح</th></tr>
+            <tr><td>①</td><td class="tg">B — <code>:first-child</code></td><td>pseudo-class (نقطتان :) وليس pseudo-element (نقطتان ::)</td></tr>
+            <tr><td>②</td><td class="tg">C — <code>DROP TABLE</code></td><td>يحذف الجدول كاملاً مع هيكله. <code>DELETE</code> يحذف الصفوف فقط</td></tr>
+            <tr><td>③</td><td class="tg">C</td><td>while ينتظر شرطاً — مثالي عندما لا نعرف عدد المحاولات</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-num">السؤال 4 <span class="q-points">2 ن</span></div>
+      <div class="q-text">اذكر 4 هجمات إلكترونية مختلفة وطريقة الحماية من كل واحدة.</div>
+      <button class="corr-btn" onclick="toggleCorr(this)">▼ عرض التصحيح</button>
+      <div class="corr-box">
+        <div class="tbl">
+          <table>
+            <tr><th>#</th><th>الهجوم</th><th>الهدف</th><th>الحماية</th></tr>
+            <tr><td>1</td><td class="tr">SQL Injection</td><td>اختراق قاعدة البيانات</td><td class="tg">PDO prepare/execute</td></tr>
+            <tr><td>2</td><td class="tr">XSS</td><td>تنفيذ JS في المتصفح</td><td class="tg">htmlspecialchars()</td></tr>
+            <tr><td>3</td><td class="tr">CSRF</td><td>طلبات باسم المستخدم</td><td class="tg">Token CSRF في النموذج</td></tr>
+            <tr><td>4</td><td class="tr">Brute Force</td><td>تخمين كلمة المرور</td><td class="tg">تحديد المحاولات + CAPTCHA</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PARTIE 2 -->
+  <div class="ex-section pdo">
+    <span class="sec-num pdo">الجزء الثاني — 8 نقاط</span>
+    <div class="sec-title">💻 Exercices (Application & Codage)</div>
+
+    <div class="q-block">
+      <div class="q-num">التمرين 1 <span class="q-points">2 ن</span></div>
+      <div class="q-text">واش يطبع هذا الكود بالضبط؟</div>
+      <pre>&lt;?php
+$i = 1;
+while ($i <= 20) {
+    if ($i % 3 == 0 && $i % 5 == 0) {
+        echo "FizzBuzz ";
+    } elseif ($i % 3 == 0) {
+        echo "Fizz ";
+    } elseif ($i % 5 == 0) {
+        echo "Buzz ";
+    }
+    $i++;
+}
+?&gt;</pre>
+      <button class="corr-btn" onclick="toggleCorr(this)">▼ عرض التصحيح</button>
+      <div class="corr-box">
+        <div class="out-label">▶ OUTPUT</div>
+        <div class="out-box">Fizz Buzz Fizz Fizz Buzz Fizz FizzBuzz Fizz Buzz Fizz Fizz Buzz</div>
+        <div class="alert a-info">
+          <span class="ai">📖</span>
+          <span>يطبع فقط الأرقام القابلة للقسمة على 3 أو 5. 15 (3×5) يطبع FizzBuzz. لا يطبع الأرقام العادية. الترتيب: 3→Fizz, 5→Buzz, 6→Fizz, 9→Fizz, 10→Buzz, 12→Fizz, 15→FizzBuzz, 18→Fizz, 20→Buzz</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-num">التمرين 2 <span class="q-points">2 ن</span></div>
+      <div class="q-text">واش يطبع هذا الكود بالضبط؟ وضّح سبب الإخراج.</div>
+      <pre>&lt;?php
+$jour = "mardi";
+switch ($jour) {
+    case "lundi":
+        echo "بداية الأسبوع";
+        break;
+    case "mardi":
+        echo "اليوم الثاني";
+    case "mercredi":
+        echo "منتصف الأسبوع";
+        break;
+    default:
+        echo "يوم عادي";
+}
+?&gt;</pre>
+      <button class="corr-btn" onclick="toggleCorr(this)">▼ عرض التصحيح</button>
+      <div class="corr-box">
+        <div class="out-label">▶ OUTPUT</div>
+        <div class="out-box">اليوم الثانيمنتصف الأسبوع</div>
+        <div class="alert a-danger">
+          <span class="ai">⚠️</span>
+          <span><strong>انتبه!</strong> الـ case <code>"mardi"</code> لا يحتوي على <code>break</code>! لذلك PHP ينفذ كود <code>"mardi"</code> ويطبع "اليوم الثاني" ثم <strong>يتابع تلقائياً</strong> وينفذ case <code>"mercredi"</code> ويطبع "منتصف الأسبوع".<br><br>
+          هذا <strong>fall-through</strong> — خطأ شائع جداً في switch! دائماً ضع <code>break</code> بعد كل case.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-num">التمرين 3 — SQL <span class="q-points">2 ن</span></div>
+      <div class="q-text">
+        جدول <code>commandes(id, client, montant, statut, date_cmd)</code><br>
+        اكتب:
+        <div style="margin-top:.4rem">① استعلام لعرض الطلبات بالحالة "confirmée" مرتبة بالتاريخ تصاعدياً.</div>
+        <div>② استعلام لحساب مجموع المبالغ لكل عميل.</div>
+      </div>
+      <button class="corr-btn" onclick="toggleCorr(this)">▼ عرض التصحيح</button>
+      <div class="corr-box">
+        <pre>-- ①
+SELECT client, montant, date_cmd
+FROM commandes
+WHERE statut = 'confirmée'
+ORDER BY date_cmd ASC;
+
+-- ②
+SELECT client, SUM(montant) AS total
+FROM commandes
+GROUP BY client
+ORDER BY total DESC;</pre>
+        <div class="alert a-info">
+          <span class="ai">📖</span>
+          <span><code>SUM(montant)</code>: يجمع المبالغ. <code>GROUP BY client</code>: يجمع الطلبات حسب كل عميل. <code>AS total</code>: يُسمّي العمود الجديد.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-num">التمرين 4 — CSS Selectors <span class="q-points">2 ن</span></div>
+      <div class="q-text">
+        ما الذي يستهدفه كل selector من هؤلاء؟
+        <pre style="margin-top:.5rem">① p::first-letter { font-size: 2em; }
+② li:nth-child(2) { color: red; }
+③ input:invalid { border: 2px solid red; }
+④ ::placeholder { color: gray; font-style: italic; }</pre>
+      </div>
+      <button class="corr-btn" onclick="toggleCorr(this)">▼ عرض التصحيح</button>
+      <div class="corr-box">
+        <div class="tbl">
+          <table>
+            <tr><th>#</th><th>الـ Selector</th><th>الشرح</th></tr>
+            <tr><td>①</td><td class="tc">p::first-letter</td><td>يستهدف الحرف الأول من كل <code>p</code> — يجعل الحرف الأول كبيراً (drop cap)</td></tr>
+            <tr><td>②</td><td class="tc">li:nth-child(2)</td><td>يستهدف <code>li</code> الثاني (العنصر رقم 2 في قائمته)</td></tr>
+            <tr><td>③</td><td class="tc">input:invalid</td><td>يستهدف حقول الإدخال التي لا تطابق النمط المطلوب (مثل email خاطئ)</td></tr>
+            <tr><td>④</td><td class="tc">::placeholder</td><td>يستهدف نص الـ hint (placeholder) داخل حقول الإدخال</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PARTIE 3 -->
+  <div class="ex-section sec">
+    <span class="sec-num sec">الجزء الثالث — 5 نقاط</span>
+    <div class="sec-title">🔍 Problèmes (Scénarios & Conception)</div>
+
+    <div class="q-block">
+      <div class="q-num">المشكلة 1 <span class="q-points">2 ن</span></div>
+      <div class="scenario">
+        <div class="scenario-title">📌 السيناريو:</div>
+        تطبيق للتواصل الاجتماعي يسمح للمستخدمين بنشر تعليقات. لاحظ المطوّر أنه إذا كتب مستخدم في تعليقه رابطاً مزيفاً يقود المستخدمين الآخرين لصفحة تطلب منهم "تحديث حسابهم" وهي في الواقع صفحة سرقة كلمات المرور!
+      </div>
+      <div class="q-text">① ما نوع هذا الهجوم بالتحديد؟ &nbsp;&nbsp;② ما الإجراءات الوقائية؟</div>
+      <button class="corr-btn" onclick="toggleCorr(this)">▼ عرض التصحيح</button>
+      <div class="corr-box">
+        <div class="alert a-danger">
+          <span class="ai">🛡️</span>
+          <span><strong>① نوع الهجوم: Phishing (التصيد الاحتيالي)</strong> مدعوم بـ <strong>XSS</strong> إذا كان الرابط يُحقن عبر النموذج.<br>
+          المهاجم ينشر محتوى مزيف يخدع المستخدمين لتسليم بياناتهم.</span>
+        </div>
+        <div class="alert a-success">
+          <span class="ai">✅</span>
+          <span><strong>② الإجراءات الوقائية:</strong><br>
+          — <code>htmlspecialchars()</code> على كل تعليق قبل عرضه (ضد XSS)<br>
+          — فلترة الروابط الخارجية في التعليقات<br>
+          — تفعيل 2FA لحماية الحسابات<br>
+          — تنبيه المستخدمين بعدم الضغط على روابط غريبة</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-num">المشكلة 2 <span class="q-points">3 ن</span></div>
+      <div class="scenario">
+        <div class="scenario-title">📌 السيناريو:</div>
+        مطوّر كتب هذا الكود للبحث عن طالب في قاعدة البيانات:
+        <pre style="margin-top:.5rem">$nom = $_GET['nom'];
+$sql = "SELECT * FROM etudiants WHERE nom = '$nom'";
+$res = $pdo->query($sql);
+$etu = $res->fetch();</pre>
+      </div>
+      <div class="q-text">① ما المشكلة الأمنية في هذا الكود؟ اشرحها بمثال. &nbsp;&nbsp;② أعد كتابة الكود بشكل صحيح وآمن باستخدام PDO.</div>
+      <button class="corr-btn" onclick="toggleCorr(this)">▼ عرض التصحيح</button>
+      <div class="corr-box">
+        <div class="alert a-danger">
+          <span class="ai">⚡</span>
+          <span><strong>① المشكلة: SQL Injection</strong><br>
+          الكود يضع <code>$nom</code> مباشرة داخل SQL. لو كتب المهاجم في URL: <code>?nom=' OR '1'='1</code><br>
+          الاستعلام يصبح: <code>WHERE nom = '' OR '1'='1'</code> → يُرجع كل الطلاب! خطر جداً.</span>
+        </div>
+        <div class="alert a-success">
+          <span class="ai">✅</span>
+          <span><strong>② الحل — PDO مع prepare/execute:</strong></span>
+        </div>
+        <pre>&lt;?php
+// ① الاتصال
+$pdo = new PDO("mysql:host=localhost;dbname=ecole", "root", "");
+
+// ② prepare — placeholder :nom بدل البيانات الحقيقية
+$stmt = $pdo->prepare("SELECT * FROM etudiants WHERE nom = :nom");
+
+// ③ execute — البيانات تُدخَل بأمان
+$stmt->execute([':nom' => $_GET['nom']]);
+
+// ④ fetch — نتيجة واحدة (طالب واحد)
+$etu = $stmt->fetch();
+
+if ($etu) {
+    echo htmlspecialchars($etu['nom']) . " — " . $etu['note'];
+} else {
+    echo "الطالب غير موجود";
+}
+?&gt;</pre>
+        <div class="alert a-info">
+          <span class="ai">📖</span>
+          <span>مع PDO، حتى لو كتب المهاجم <code>' OR '1'='1</code>، سيُعامَل كاسم طالب عادي ولن يتأثر الاستعلام.</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+</div><!-- end exam-3 -->
+
+
+<!-- Footer -->
+<div style="text-align:center;padding:2.5rem 0 1.5rem;color:var(--muted);font-size:.85rem;border-top:1px solid var(--border);margin-top:2rem">
+  📝 Examens Blancs — TechWeb S2 — السنة الثالثة 2025/2026<br>
+  <span style="font-size:.75rem;opacity:.6">جميع الأسئلة من محتوى الملخص الخاص بالمادة</span>
+</div>
+
+<script>
+// Switch exams
+function switchExam(index) {
+  document.querySelectorAll('.exam-page').forEach((p, i) => {
+    p.classList.toggle('active', i === index);
+  });
+  const tabs = document.querySelectorAll('.tab-btn');
+  tabs.forEach((t, i) => {
+    t.classList.remove('active');
+    if (i === index) {
+      t.classList.add('active');
+      if (i === 1) t.classList.add('e2');
+      if (i === 2) t.classList.add('e3');
+      if (i === 3) t.classList.add('e4');
+    }
+  });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Toggle single correction
+function toggleCorr(btn) {
+  const box = btn.nextElementSibling;
+  const isOpen = box.classList.toggle('open');
+  btn.classList.toggle('open', isOpen);
+  btn.textContent = isOpen ? '▲ إخفاء التصحيح' : '▼ عرض التصحيح';
+}
+
+// Toggle ALL corrections in an exam
+function toggleAllCorr(examId) {
+  const exam = document.getElementById(examId);
+  const boxes = exam.querySelectorAll('.corr-box');
+  const btns  = exam.querySelectorAll('.corr-btn');
+  const allOpen = [...boxes].every(b => b.classList.contains('open'));
+  boxes.forEach(b => b.classList.toggle('open', !allOpen));
+  btns.forEach(b => {
+    b.classList.toggle('open', !allOpen);
+    b.textContent = !allOpen ? '▲ إخفاء التصحيح' : '▼ عرض التصحيح';
+  });
+}
+</script>
+</body>
+</html>
