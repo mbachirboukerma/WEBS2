@@ -5,6 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>مراجعة TechWeb S2 — الامتحان النهائي 🎯</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@400;500;700;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    corePlugins: { preflight: false },
+    theme: {
+      extend: {
+        screens: { xs: '475px' }
+      }
+    }
+  };
+</script>
 <style>
 /* ═══════════════════════════════════════════
    VARIABLES & RESET
@@ -54,6 +65,7 @@ body {
   line-height: 1.85;
   direction: rtl;
   font-size: 15px;
+  overflow-x: hidden;
 }
 
 /* ═══════════════════════════════════════════
@@ -114,11 +126,34 @@ body {
   background: rgba(8,12,24,0.96);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border);
-  padding: 0.55rem 1.2rem;
+}
+.nav-toggle {
   display: flex;
-  gap: 0.35rem;
-  flex-wrap: wrap;
+  align-items: center;
   justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border);
+  background: var(--surface2);
+  color: var(--text);
+  font-size: 1.25rem;
+  cursor: pointer;
+  font-family: inherit;
+  flex-shrink: 0;
+}
+.nav-toggle:hover { border-color: var(--border2); color: var(--php-light); }
+.nav-menu { display: none; flex-direction: column; width: 100%; }
+.nav-menu.is-open { display: flex !important; }
+@media (min-width: 1024px) {
+  .nav-toggle { display: none !important; }
+  .nav-menu {
+    display: flex !important;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
 }
 .nav a {
   color: var(--muted);
@@ -139,10 +174,47 @@ body {
 .nav a.nk { color: var(--sec-light); }
 .nav a.nt { color: var(--tp-light);  }
 
+.page-switch {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.4rem 1rem;
+  border-radius: 10px;
+  font-weight: 800;
+  font-size: 0.82rem;
+  text-decoration: none;
+  border: 1px solid rgba(16, 185, 129, 0.55);
+  background: linear-gradient(135deg, rgba(16,185,129,0.18), rgba(6,182,212,0.12));
+  color: var(--pdo-light);
+  transition: all 0.2s;
+  white-space: nowrap;
+  font-family: inherit;
+  margin: 0.25rem 0;
+}
+.page-switch:hover {
+  border-color: var(--pdo-light);
+  color: #fff;
+  box-shadow: 0 4px 18px rgba(16, 185, 129, 0.3);
+  background: linear-gradient(135deg, rgba(16,185,129,0.35), rgba(6,182,212,0.2));
+}
+
 /* ═══════════════════════════════════════════
    LAYOUT
 ═══════════════════════════════════════════ */
-.wrap { max-width: 1200px; margin: 0 auto; padding: 2.2rem 1.5rem; }
+.wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  min-width: 0;
+  padding: 1.25rem 1rem;
+}
+@media (min-width: 640px) {
+  .wrap { padding: 1.75rem 1.5rem; }
+}
+@media (min-width: 1024px) {
+  .wrap { padding: 2.2rem 1.5rem; }
+}
 
 /* ═══════════════════════════════════════════
    SECTION HEADER
@@ -183,7 +255,9 @@ body {
   padding: 1.5rem 1.6rem;
   margin-bottom: 1.4rem;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
+  min-width: 0;
+  max-width: 100%;
 }
 .card::before {
   content: '';
@@ -212,32 +286,62 @@ body {
 /* ═══════════════════════════════════════════
    GRIDS
 ═══════════════════════════════════════════ */
-.g2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.2rem; }
-.g3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+.g2 { display: grid; gap: 1.2rem; min-width: 0; }
+.g3 { display: grid; gap: 1rem; min-width: 0; }
+.g2 > *, .g3 > * { min-width: 0; }
 
 /* ═══════════════════════════════════════════
    CODE
 ═══════════════════════════════════════════ */
 pre, code {
   font-family: 'Fira Code', monospace;
+}
+pre, .out-box, .tbl {
   direction: ltr;
+  unicode-bidi: isolate;
   text-align: left;
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 pre {
   background: var(--code-bg);
   border: 1px solid var(--border);
   border-radius: 10px;
-  padding: 1rem 1.2rem;
+  padding: 0.85rem 1rem;
   overflow-x: auto;
-  font-size: 0.8rem;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  white-space: pre;
+  word-break: normal;
+  font-size: clamp(0.68rem, 2.8vw, 0.8rem);
   line-height: 1.65;
   margin: 0.7rem 0;
 }
+pre::-webkit-scrollbar,
+.tbl::-webkit-scrollbar,
+.out-box::-webkit-scrollbar {
+  height: 6px;
+}
+pre::-webkit-scrollbar-thumb,
+.tbl::-webkit-scrollbar-thumb,
+.out-box::-webkit-scrollbar-thumb {
+  background: var(--border2);
+  border-radius: 4px;
+}
 code {
+  direction: ltr;
+  unicode-bidi: isolate;
   background: rgba(255,255,255,0.08);
   padding: 0.15em 0.42em;
   border-radius: 5px;
   font-size: 0.83em;
+  max-width: 100%;
+  overflow-x: auto;
+  word-break: break-word;
 }
 
 /* ═══════════════════════════════════════════
@@ -257,18 +361,57 @@ code {
   border-radius: 8px;
   padding: 0.65rem 1rem;
   font-family: 'Fira Code', monospace;
-  font-size: 0.8rem;
-  direction: ltr;
-  text-align: left;
+  font-size: clamp(0.68rem, 2.8vw, 0.8rem);
   color: #4ade80;
   margin-bottom: 0.5rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 
 /* ═══════════════════════════════════════════
    TABLES
 ═══════════════════════════════════════════ */
-.tbl { overflow-x: auto; margin: 0.7rem 0; }
-table { width: 100%; border-collapse: collapse; font-size: 0.86rem; }
+.tbl {
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  margin: 0.7rem 0;
+  max-width: 100%;
+  border-radius: 8px;
+  /* شريط تمرير واضح على الهاتف */
+  scrollbar-width: thin;
+  scrollbar-color: var(--border2) transparent;
+}
+.tbl table {
+  width: max-content;
+  min-width: 100%;
+  border-collapse: collapse;
+  font-size: 0.86rem;
+  direction: rtl;
+  text-align: right;
+}
+@media (max-width: 768px) {
+  .tbl table { min-width: 520px; }
+  table { font-size: 0.8rem; }
+  th, td { padding: 0.5rem 0.65rem; }
+  .tbl::after,
+  pre::after {
+    content: '← اسحب لرؤية باقي المحتوى';
+    display: block;
+    font-size: 0.65rem;
+    color: var(--muted);
+    text-align: center;
+    padding-top: 0.35rem;
+    direction: rtl;
+    font-family: 'Cairo', sans-serif;
+  }
+  .sec-label { font-size: 1.25rem; }
+  .sec-icon { width: 44px; height: 44px; font-size: 1.35rem; }
+}
+table { border-collapse: collapse; font-size: 0.86rem; }
 th {
   background: var(--surface2);
   padding: 0.65rem 1rem;
@@ -326,7 +469,9 @@ tr:hover td { background: rgba(255,255,255,0.015); }
   padding: 0.55rem 1.4rem;
   font-size: 0.84rem;
   font-weight: 700;
-  min-width: 230px;
+  min-width: 0;
+  max-width: 100%;
+  width: 100%;
   text-align: center;
 }
 .fa { color: var(--muted); font-size: 1.3rem; line-height: 1.2; }
@@ -345,6 +490,9 @@ tr:hover td { background: rgba(255,255,255,0.015); }
   padding: 1.5rem;
   text-align: center;
   margin: 1rem 0;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: auto;
 }
 .mm-center {
   display: inline-block;
@@ -408,6 +556,9 @@ tr:hover td { background: rgba(255,255,255,0.015); }
   border-radius: 14px;
   padding: 1.3rem 1.4rem;
   margin-bottom: 1.1rem;
+  min-width: 0;
+  max-width: 100%;
+  overflow: visible;
 }
 .ex-num {
   display: inline-block;
@@ -426,7 +577,18 @@ tr:hover td { background: rgba(255,255,255,0.015); }
   margin-bottom: 0.7rem;
   color: var(--text);
 }
-.ex-q code { display: block; margin: 0.4rem 0; background: var(--code-bg); padding: 0.5rem 0.7rem; border-radius: 7px; font-size: 0.78rem; }
+.ex-q code {
+  display: block;
+  margin: 0.4rem 0;
+  background: var(--code-bg);
+  padding: 0.5rem 0.7rem;
+  border-radius: 7px;
+  font-size: 0.78rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  white-space: pre;
+  max-width: 100%;
+}
 .toggle-btn {
   background: none;
   border: 1px solid var(--border);
@@ -465,18 +627,6 @@ tr:hover td { background: rgba(255,255,255,0.015); }
 .pc { background: var(--css-bg); color: var(--css-light); }
 strong { color: var(--gold); }
 .txt-m { color: var(--muted); font-size: 0.85rem; }
-
-/* ═══════════════════════════════════════════
-   RESPONSIVE
-═══════════════════════════════════════════ */
-@media (max-width: 700px) {
-  .g2, .g3 { grid-template-columns: 1fr; }
-  .hero h1 { font-size: 1.55rem; }
-  th, td { padding: 0.5rem 0.7rem; }
-  .tbl table { min-width: 480px; }
-  pre { font-size: 0.75rem; }
-  .sec-label { font-size: 1.3rem; }
-}
 
 /* ═══════════════════════════════════════════
    POPUP & TOAST
@@ -635,13 +785,13 @@ strong { color: var(--gold); }
 }
 </style>
 </head>
-<body>
+<body class="overflow-x-hidden text-sm sm:text-[15px] lg:text-base">
 
 <!-- ══════════ HERO ══════════ -->
-<div class="hero">
-  <h1>🎯 مراجعة TechWeb S2 — الامتحان النهائي</h1>
-  <p class="hero-sub">مراجعة متوازنة: مفصلة كافياً + ملتزمة بمحتوى المادة الحقيقي</p>
-  <div class="badge-row">
+<div class="hero px-4 py-10 sm:px-6 sm:py-12 lg:px-8 lg:py-14">
+  <h1 class="text-2xl sm:text-3xl lg:text-5xl">🎯 مراجعة TechWeb S2 — الامتحان النهائي</h1>
+  <p class="hero-sub text-sm sm:text-base px-2">مراجعة متوازنة: مفصلة كافياً + ملتزمة بمحتوى المادة الحقيقي</p>
+  <div class="badge-row gap-2 sm:gap-2.5">
     <span class="badge b-php">⚡ PHP</span>
     <span class="badge b-sql">🗄️ SQL / MySQL</span>
     <span class="badge b-css">🎨 CSS</span>
@@ -652,16 +802,23 @@ strong { color: var(--gold); }
 </div>
 
 <!-- ══════════ NAV ══════════ -->
-<nav class="nav">
-  <a href="#php"    class="np">⚡ PHP — الأساسيات</a>
-  <a href="#loops"  class="np">🔄 Boucles</a>
-  <a href="#forms"  class="np">📋 GET/POST</a>
-  <a href="#sql"    class="ns">🗄️ SQL</a>
-  <a href="#pdo"    class="nd">🔐 PDO</a>
-  <a href="#sec"    class="nk">🛡️ Sécurité</a>
-  <a href="#css"    class="nc">🎨 CSS</a>
-  <a href="#tp"     class="nt">📝 تمارين TP</a>
-  <a href="#recap"  style="color:#a78bfa">✨ Recap</a>
+<nav class="nav px-3 py-2 sm:px-4 lg:px-5">
+  <div class="flex items-center justify-between gap-2 lg:hidden">
+    <span class="text-sm font-black text-[#a78bfa] shrink-0">📚 TechWeb S2</span>
+    <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="فتح القائمة">☰</button>
+  </div>
+  <div id="nav-menu" class="nav-menu gap-1 pt-2 pb-1 lg:gap-1.5 lg:pt-0 lg:pb-0">
+    <a href="exams.html" class="page-switch block w-full sm:w-auto text-center px-3 py-2.5 lg:py-1.5 lg:px-4">📝 الامتحانات البيضاء</a>
+    <a href="#php"    class="np block text-center sm:text-right px-3 py-2.5 lg:py-1 lg:px-3">⚡ PHP — الأساسيات</a>
+    <a href="#loops"  class="np block text-center sm:text-right px-3 py-2.5 lg:py-1 lg:px-3">🔄 Boucles</a>
+    <a href="#forms"  class="np block text-center sm:text-right px-3 py-2.5 lg:py-1 lg:px-3">📋 GET/POST</a>
+    <a href="#sql"    class="ns block text-center sm:text-right px-3 py-2.5 lg:py-1 lg:px-3">🗄️ SQL</a>
+    <a href="#pdo"    class="nd block text-center sm:text-right px-3 py-2.5 lg:py-1 lg:px-3">🔐 PDO</a>
+    <a href="#sec"    class="nk block text-center sm:text-right px-3 py-2.5 lg:py-1 lg:px-3">🛡️ Sécurité</a>
+    <a href="#css"    class="nc block text-center sm:text-right px-3 py-2.5 lg:py-1 lg:px-3">🎨 CSS</a>
+    <a href="#tp"     class="nt block text-center sm:text-right px-3 py-2.5 lg:py-1 lg:px-3">📝 تمارين TP</a>
+    <a href="#recap"  class="block text-center sm:text-right px-3 py-2.5 lg:py-1 lg:px-3" style="color:#a78bfa">✨ Recap</a>
+  </div>
 </nav>
 
 
@@ -2185,6 +2342,32 @@ $users = $stmt->fetchAll();</code>
 <div class="salat-toast" id="salat-toast" aria-live="polite">🌙 صلّ على الحبيب ﷺ</div>
 
 <script>
+// Mobile nav — فتح/إغلاق القائمة
+(function () {
+  const toggle = document.getElementById('nav-toggle');
+  const menu = document.getElementById('nav-menu');
+  if (!toggle || !menu) return;
+
+  function setMenuOpen(open) {
+    menu.classList.toggle('is-open', open);
+    toggle.setAttribute('aria-expanded', open);
+    toggle.textContent = open ? '✕' : '☰';
+    toggle.setAttribute('aria-label', open ? 'إغلاق القائمة' : 'فتح القائمة');
+  }
+
+  toggle.addEventListener('click', function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    setMenuOpen(!menu.classList.contains('is-open'));
+  });
+
+  menu.querySelectorAll('a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      if (window.matchMedia('(max-width: 1023px)').matches) setMenuOpen(false);
+    });
+  });
+})();
+
 // Smooth scroll
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
