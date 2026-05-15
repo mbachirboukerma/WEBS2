@@ -1,0 +1,1708 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>خطة المراجعة الشاملة — TechWeb S2</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Fira+Code:wght@400;500&display=swap');
+
+  :root {
+    --bg: #0d1117;
+    --bg2: #161b22;
+    --bg3: #1f2937;
+    --card: #21262d;
+    --border: #30363d;
+    --accent: #58a6ff;
+    --accent2: #f78166;
+    --accent3: #56d364;
+    --accent4: #e3b341;
+    --accent5: #bc8cff;
+    --text: #e6edf3;
+    --text2: #8b949e;
+    --red: #f85149;
+    --green: #56d364;
+    --yellow: #e3b341;
+    --purple: #bc8cff;
+    --blue: #58a6ff;
+    --orange: #f0883e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Cairo', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+    font-size: 16px;
+  }
+
+  /* NAV */
+  nav {
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 30px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  nav span { font-weight: 900; font-size: 1.1rem; color: var(--accent); margin-left: 10px; }
+  nav a {
+    color: var(--text2);
+    text-decoration: none;
+    font-size: 0.82rem;
+    padding: 4px 10px;
+    border-radius: 20px;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+  }
+  nav a:hover { color: var(--accent); border-color: var(--accent); }
+
+  .hero {
+    background: linear-gradient(135deg, #0d1117 0%, #1a2744 50%, #0d1117 100%);
+    text-align: center;
+    padding: 60px 30px 50px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(88,166,255,0.06) 0%, transparent 70%);
+    top: -100px; left: 50%; transform: translateX(-50%);
+  }
+  .hero h1 { font-size: 2.4rem; font-weight: 900; color: var(--accent); margin-bottom: 10px; }
+  .hero p { color: var(--text2); font-size: 1rem; max-width: 700px; margin: 0 auto; }
+
+  .badges { display: flex; gap: 10px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
+  .badge {
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+  .badge-php  { background: #3b1f5e; color: var(--purple); border: 1px solid var(--purple); }
+  .badge-css  { background: #1a2f1a; color: var(--green);  border: 1px solid var(--green); }
+  .badge-sql  { background: #2a1f1a; color: var(--orange); border: 1px solid var(--orange); }
+  .badge-sec  { background: #2a1a1a; color: var(--red);    border: 1px solid var(--red); }
+  .badge-poo  { background: #1a2a3a; color: var(--blue);   border: 1px solid var(--blue); }
+  .badge-bdd  { background: #2a2a1a; color: var(--yellow); border: 1px solid var(--yellow); }
+
+  main { max-width: 1100px; margin: 0 auto; padding: 30px 20px 60px; }
+
+  /* SECTION HEADERS */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 50px 0 24px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--border);
+  }
+  .section-header .icon {
+    width: 42px; height: 42px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 1.5rem; font-weight: 900; }
+  .section-header .tag {
+    margin-right: auto;
+    font-size: 0.75rem;
+    color: var(--text2);
+    background: var(--bg3);
+    padding: 2px 10px;
+    border-radius: 10px;
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px 24px;
+    margin-bottom: 18px;
+  }
+  .card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* GRID */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+  @media(max-width: 700px) {
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  }
+
+  /* TABLES */
+  .tbl-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.9rem; margin-bottom: 10px; }
+  th {
+    background: var(--bg3);
+    padding: 10px 14px;
+    text-align: right;
+    font-weight: 700;
+    color: var(--accent);
+    border-bottom: 2px solid var(--border);
+  }
+  td {
+    padding: 9px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(255,255,255,0.02); }
+
+  /* CODE */
+  code {
+    font-family: 'Fira Code', monospace;
+    background: var(--bg3);
+    padding: 2px 7px;
+    border-radius: 5px;
+    font-size: 0.85em;
+    color: var(--accent4);
+    direction: ltr;
+    display: inline-block;
+  }
+  pre {
+    background: #010409;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px 20px;
+    overflow-x: auto;
+    margin: 10px 0;
+    direction: ltr;
+    text-align: left;
+  }
+  pre code {
+    background: none;
+    padding: 0;
+    color: var(--text);
+    font-size: 0.88em;
+    line-height: 1.7;
+  }
+  .kw  { color: #ff7b72; }
+  .fn  { color: #d2a8ff; }
+  .str { color: #a5d6ff; }
+  .cmt { color: #8b949e; font-style: italic; }
+  .var { color: #79c0ff; }
+  .num { color: #f0883e; }
+
+  /* CALLOUTS */
+  .callout {
+    padding: 14px 18px;
+    border-radius: 8px;
+    margin: 12px 0;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .callout .ico { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
+  .callout.warning { background: rgba(227,179,65,0.1); border-right: 3px solid var(--yellow); }
+  .callout.danger  { background: rgba(248,81,73,0.1);  border-right: 3px solid var(--red); }
+  .callout.success { background: rgba(86,211,100,0.1); border-right: 3px solid var(--green); }
+  .callout.info    { background: rgba(88,166,255,0.1); border-right: 3px solid var(--blue); }
+
+  /* LISTS */
+  ul.styled { list-style: none; padding: 0; }
+  ul.styled li {
+    padding: 7px 0 7px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  ul.styled li::before { content: '◆'; color: var(--accent); font-size: 0.7em; margin-top: 5px; flex-shrink: 0; }
+  ul.styled li:last-child { border-bottom: none; }
+
+  /* PRIORITY BADGES */
+  .p-high   { background: #3a1a1a; color: var(--red);    padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 700; }
+  .p-med    { background: #2a2a1a; color: var(--yellow);  padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 700; }
+  .p-low    { background: #1a2a1a; color: var(--green);   padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 700; }
+
+  /* EXERCISE BLOCKS */
+  .exercise {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 24px;
+    overflow: hidden;
+  }
+  .ex-header {
+    background: var(--bg3);
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .ex-header .num {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #000;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 900;
+    font-size: 0.95rem;
+    flex-shrink: 0;
+  }
+  .ex-header h4 { font-size: 1rem; font-weight: 700; }
+  .ex-body { padding: 20px; }
+  .ex-body h5 { font-size: 0.9rem; font-weight: 700; color: var(--accent2); margin: 16px 0 8px; }
+  .ex-body h5:first-child { margin-top: 0; }
+
+  /* ATTACK TABLE */
+  .attack-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin-bottom: 14px;
+    border-right: 4px solid var(--red);
+  }
+  .attack-card h4 { color: var(--red); font-size: 1rem; margin-bottom: 10px; }
+
+  /* TIMELINE */
+  .timeline { padding: 0; }
+  .tl-item {
+    display: flex;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .tl-item:last-child { border-bottom: none; }
+  .tl-day {
+    background: var(--accent);
+    color: #000;
+    font-weight: 900;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+    height: fit-content;
+    margin-top: 3px;
+  }
+
+  /* CHEAT SHEET */
+  .cheat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media(max-width: 700px) { .cheat-grid { grid-template-columns: 1fr; } }
+  .cheat-block {
+    background: #010409;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .cheat-block h4 { color: var(--accent); font-size: 0.9rem; margin-bottom: 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+
+  /* QCM */
+  .qcm {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin-bottom: 12px;
+  }
+  .qcm .q { font-weight: 700; margin-bottom: 10px; color: var(--text); }
+  .qcm .ans { color: var(--green); margin-top: 8px; font-size: 0.9rem; }
+
+  /* MAP */
+  .map-container {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+  }
+  .map-center {
+    display: inline-block;
+    background: var(--accent);
+    color: #000;
+    font-weight: 900;
+    padding: 14px 28px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+  }
+  .map-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .map-node {
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 700;
+  }
+
+  a.anchor { scroll-margin-top: 70px; }
+  .highlight { background: rgba(88,166,255,0.1); border-radius: 4px; padding: 1px 4px; color: var(--blue); }
+  strong { color: var(--accent4); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 30px 0; }
+  .text-muted { color: var(--text2); font-size: 0.88rem; }
+</style>
+</head>
+<body>
+
+<nav>
+  <span>📚 TechWeb S2</span>
+  <a href="#map">خريطة الفصل</a>
+  <a href="#css">CSS</a>
+  <a href="#php">PHP</a>
+  <a href="#bdd">BDD/SQL</a>
+  <a href="#security">الأمان</a>
+  <a href="#poo">POO</a>
+  <a href="#tp-analysis">تحليل TP</a>
+  <a href="#exercises">تمارين</a>
+  <a href="#cheatsheet">ورقة المراجعة</a>
+  <a href="#plan">خطة النجاح</a>
+</nav>
+
+<div class="hero">
+  <h1>🎯 خطة المراجعة الشاملة — TechWeb S2</h1>
+  <p>تحليل كامل لجميع الملفات النظرية والتطبيقية — موجّه حرفيًا للنجاح في الامتحان بأعلى علامة</p>
+  <div class="badges">
+    <span class="badge badge-php">PHP pur</span>
+    <span class="badge badge-css">CSS Avancé</span>
+    <span class="badge badge-sql">MySQL/SQL</span>
+    <span class="badge badge-sec">Sécurité</span>
+    <span class="badge badge-poo">POO</span>
+    <span class="badge badge-bdd">BDD PHP</span>
+  </div>
+</div>
+
+<main>
+
+<!-- ════════════════════════════════════════════
+     PHASE 1 — CARTE DU SEMESTRE
+     ════════════════════════════════════════════ -->
+<a class="anchor" id="map"></a>
+<div class="section-header">
+  <div class="icon" style="background:#1a2744">🗺️</div>
+  <h2>المرحلة 1 — خريطة الفصل الشاملة</h2>
+  <span class="tag">Phase 1</span>
+</div>
+
+<div class="map-container">
+  <div class="map-center">TechWeb S2 — المنهج الكامل</div>
+  <div class="map-row">
+    <div class="map-node" style="background:#1a2f3a;color:#58a6ff;border:1px solid #58a6ff">1️⃣ CSS (Sélecteurs + Propriétés)</div>
+    <div class="map-node" style="background:#1f1a2f;color:#bc8cff;border:1px solid #bc8cff">2️⃣ PHP Notions de base 1</div>
+    <div class="map-node" style="background:#2a1f1a;color:#f0883e;border:1px solid #f0883e">3️⃣ PHP Notions de base 2</div>
+  </div>
+  <div class="map-row">
+    <div class="map-node" style="background:#1a2a1a;color:#56d364;border:1px solid #56d364">4️⃣ BDD / MySQL / SQL</div>
+    <div class="map-node" style="background:#2a1a1a;color:#f85149;border:1px solid #f85149">5️⃣ Attaques & Sécurité + PDO</div>
+    <div class="map-node" style="background:#2a2a1a;color:#e3b341;border:1px solid #e3b341">6️⃣ BDD + PHP (connexion)</div>
+  </div>
+  <div class="map-row">
+    <div class="map-node" style="background:#1a1a2a;color:#79c0ff;border:1px solid #79c0ff">7️⃣ POO (Classe, Héritage)</div>
+    <div class="map-node" style="background:#2a1a2a;color:#ff7b72;border:1px solid #ff7b72">8️⃣ Triggers & Procédures</div>
+    <div class="map-node" style="background:#1a2a2a;color:#56d364;border:1px solid #56d364">9️⃣ Contraintes + Architecture</div>
+  </div>
+</div>
+
+<div class="callout info" style="margin-top:16px">
+  <span class="ico">💡</span>
+  <div><strong>ترتيب التبعية:</strong> CSS مستقل ← PHP الأساسيات أولًا ← BDD/SQL ← ثم دمج PHP+BDD ← ثم الأمان (يستخدم PHP+SQL) ← POO (مفهوم منفصل)</div>
+</div>
+
+<div class="card" style="margin-top:16px">
+  <h3>📊 ترتيب الدروس حسب الأهمية في الامتحان</h3>
+  <div class="tbl-wrap">
+    <table>
+      <tr><th>الأولوية</th><th>الدرس</th><th>السبب</th><th>نوع الأسئلة المتوقعة</th></tr>
+      <tr><td><span class="p-high">🔥 أعلى</span></td><td>PHP Notions 1 (Variables, Boucles, Conditions)</td><td>الأساس — يتكرر في كل TP</td><td>تحليل كود، output، إيجاد خطأ</td></tr>
+      <tr><td><span class="p-high">🔥 أعلى</span></td><td>CSS (Sélecteurs + Propriétés)</td><td>TP كاملة مخصصة له (TP6→TP9)</td><td>تطبيق سيليكتور صحيح، تمييز بالخصائص</td></tr>
+      <tr><td><span class="p-high">🔥 أعلى</span></td><td>Attaques & Sécurité (SQL Injection, XSS)</td><td>الأستاذ ذكره صراحةً</td><td>جدول الهجمات، شرح كود PDO/htmlspecialchars</td></tr>
+      <tr><td><span class="p-med">⚡ عالي</span></td><td>BDD + MySQL (CREATE, INSERT, SELECT…)</td><td>مرتبط بـ PHP + TP</td><td>كتابة استعلام، إيجاد خطأ SQL</td></tr>
+      <tr><td><span class="p-med">⚡ عالي</span></td><td>PHP + BDD (PDO, connexion)</td><td>جوهر المشاريع التطبيقية</td><td>شرح كود، وظيفة prepare()/execute()</td></tr>
+      <tr><td><span class="p-med">⚡ عالي</span></td><td>POO (Classe, Héritage, Encapsulation)</td><td>درس مستقل</td><td>تعريف المفاهيم، قراءة كود</td></tr>
+      <tr><td><span class="p-low">✅ متوسط</span></td><td>Triggers & Procédures Stockées</td><td>درس متقدم نسبيًا</td><td>تعريف Trigger، فهم NEW/OLD</td></tr>
+      <tr><td><span class="p-low">✅ متوسط</span></td><td>Contraintes BDD (PK, FK, UNIQUE…)</td><td>مرتبط بتصميم الجداول</td><td>أسئلة تعريف، مثال SQL</td></tr>
+    </table>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════
+     PHASE 2 — CSS
+     ════════════════════════════════════════════ -->
+<a class="anchor" id="css"></a>
+<div class="section-header">
+  <div class="icon" style="background:#1a2f1a">🎨</div>
+  <h2>المرحلة 2 — ملخص CSS الشامل</h2>
+  <span class="tag">CSS (TP6 → TP9)</span>
+</div>
+
+<div class="callout warning">
+  <span class="ico">⚠️</span>
+  <div><strong>نقطة مهمة:</strong> التركيز على الـ <strong>sélecteurs</strong> والـ <strong>propriétés</strong> المستعملة فعليًا في الـ TP. الأستاذ يختبر التطبيق العملي أكثر من الحفظ النظري.</div>
+</div>
+
+<div class="card">
+  <h3>🎯 أنواع Sélecteurs CSS — الكاملة مع TP</h3>
+  <div class="tbl-wrap">
+    <table>
+      <tr><th>Sélecteur</th><th>المعنى</th><th>مثال</th><th>TP</th></tr>
+      <tr><td><code>*</code></td><td>كل العناصر (universal)</td><td><code>* { margin: 0; padding: 0; }</code></td><td>TP6 ex2</td></tr>
+      <tr><td><code>h1</code></td><td>بالنوع (type selector)</td><td><code>h1 { color: red; }</code></td><td>TP6 ex1</td></tr>
+      <tr><td><code>.info</code></td><td>بالكلاس (class)</td><td><code>.info { background: yellow; }</code></td><td>TP6 ex3</td></tr>
+      <tr><td><code>#important</code></td><td>بالمعرّف (id)</td><td><code>#important { font-weight: bold; }</code></td><td>TP6 ex4</td></tr>
+      <tr><td><code>a:hover</code></td><td>حالة التحويم (pseudo-class)</td><td><code>a:hover { color: blue; }</code></td><td>TP6 ex5</td></tr>
+      <tr><td><code>div p</code></td><td>عنصر داخل آخر (descendant)</td><td><code>div p { color: green; }</code></td><td>TP6 ex6</td></tr>
+      <tr><td><code>ul > li</code></td><td>ابن مباشر فقط (child)</td><td><code>ul > li { list-style: none; }</code></td><td>TP6 ex7</td></tr>
+      <tr><td><code>h2 + p</code></td><td>أخ مجاور مباشر (adjacent)</td><td><code>h2 + p { font-size: 1.1em; }</code></td><td>TP6 ex8</td></tr>
+      <tr><td><code>section ~ article</code></td><td>كل الإخوة التالية (general sibling)</td><td><code>section ~ article { margin: 10px; }</code></td><td>TP7</td></tr>
+      <tr><td><code>p::first-letter</code></td><td>الحرف الأول (pseudo-element)</td><td><code>p::first-letter { font-size: 2em; }</code></td><td>TP6 ex9</td></tr>
+      <tr><td><code>article:has(img)</code></td><td>عنصر يحتوي… (CSS4)</td><td><code>article:has(img) { border: 2px solid; }</code></td><td>TP7 ex1</td></tr>
+      <tr><td><code>:not(.error)</code></td><td>باستثناء (negation)</td><td><code>p:not(.error) { color: blue; }</code></td><td>TP7 ex1</td></tr>
+      <tr><td><code>:is(h1,h2,h3)</code></td><td>يجمع محددات (specificity عالية)</td><td><code>:is(h1,h2,h3) { margin: 10px; }</code></td><td>TP7</td></tr>
+      <tr><td><code>:where(h1,h2)</code></td><td>مثل :is لكن specificity=0</td><td><code>:where(h1,h2) { color: gray; }</code></td><td>TP7</td></tr>
+      <tr><td><code>::before</code></td><td>محتوى قبل العنصر</td><td><code>p::before { content: "◆"; }</code></td><td>TP7</td></tr>
+      <tr><td><code>::after</code></td><td>محتوى بعد العنصر</td><td><code>p::after { content: "✓"; }</code></td><td>TP7</td></tr>
+      <tr><td><code>::placeholder</code></td><td>نص hint في الحقل</td><td><code>::placeholder { color: gray; }</code></td><td>TP7</td></tr>
+      <tr><td><code>:invalid</code></td><td>حقل نموذج غير صالح</td><td><code>input:invalid { border: 2px solid red; }</code></td><td>TP6 ex14</td></tr>
+      <tr><td><code>:nth-child(n)</code></td><td>العنصر رقم n</td><td><code>li:nth-child(2) { color: red; }</code></td><td>TP7</td></tr>
+      <tr><td><code>:first-child</code></td><td>أول ابن</td><td><code>p:first-child { font-weight: bold; }</code></td><td>TP7</td></tr>
+      <tr><td><code>:target</code></td><td>العنصر المستهدف بـ URL#</td><td><code>:target { background: yellow; }</code></td><td>TP9</td></tr>
+      <tr><td><code>div:has(img)</code></td><td>div يحتوي صورة</td><td><code>div:has(img) { border: solid; }</code></td><td>TP6 ex13</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="grid-2">
+  <div class="card">
+    <h3 style="color:var(--blue)">📦 Box Model — النموذج الصندوقي</h3>
+    <ul class="styled">
+      <li><code>width / height</code> — العرض والارتفاع</li>
+      <li><code>margin</code> — الهامش الخارجي</li>
+      <li><code>padding</code> — الهامش الداخلي</li>
+      <li><code>border</code> — الحدود</li>
+      <li><code>box-sizing: border-box</code> — يحسب padding ضمن العرض</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3 style="color:var(--green)">🎭 Position والإزاحة</h3>
+    <ul class="styled">
+      <li><code>position: static</code> — افتراضي</li>
+      <li><code>position: relative</code> — إزاحة بالنسبة لموضعه الأصلي</li>
+      <li><code>position: absolute</code> — بالنسبة لأقرب أب relative</li>
+      <li><code>position: fixed</code> — ثابت عند التمرير</li>
+      <li><code>top/left/right/bottom</code> — تحديد الإزاحة</li>
+    </ul>
+  </div>
+</div>
+
+<div class="card">
+  <h3>🎨 خصائص CSS المهمة في TP8 — جدول شامل</h3>
+  <div class="tbl-wrap">
+    <table>
+      <tr><th>الخاصية</th><th>الوظيفة</th><th>القيم المهمة</th></tr>
+      <tr><td><code>color</code></td><td>لون النص</td><td>red, #ff0000, rgb(255,0,0), hsl()</td></tr>
+      <tr><td><code>background-color</code></td><td>لون الخلفية</td><td>أي قيمة لون</td></tr>
+      <tr><td><code>background-image</code></td><td>صورة خلفية</td><td><code>url("image.jpg")</code></td></tr>
+      <tr><td><code>background-repeat</code></td><td>تكرار الخلفية</td><td>repeat, no-repeat, repeat-x, repeat-y</td></tr>
+      <tr><td><code>background-position</code></td><td>موضع الخلفية</td><td>left, center, right, top, bottom</td></tr>
+      <tr><td><code>background-size</code></td><td>حجم الخلفية</td><td>auto, contain, cover</td></tr>
+      <tr><td><code>font-family</code></td><td>نوع الخط</td><td>Arial, serif, sans-serif</td></tr>
+      <tr><td><code>font-size</code></td><td>حجم الخط</td><td>px, em, rem, %</td></tr>
+      <tr><td><code>font-weight</code></td><td>سماكة الخط</td><td>normal, bold, 100-900</td></tr>
+      <tr><td><code>font-style</code></td><td>شكل الخط</td><td>normal, italic, oblique</td></tr>
+      <tr><td><code>text-align</code></td><td>محاذاة النص</td><td>left, right, center, justify</td></tr>
+      <tr><td><code>text-decoration</code></td><td>زخرفة النص</td><td>none, underline, overline, line-through</td></tr>
+      <tr><td><code>text-transform</code></td><td>تحويل حالة الأحرف</td><td>uppercase, lowercase, capitalize</td></tr>
+      <tr><td><code>border</code></td><td>الحدود (shorthand)</td><td><code>2px solid red</code></td></tr>
+      <tr><td><code>border-style</code></td><td>نمط الحد</td><td>solid, dashed, dotted, double, none</td></tr>
+      <tr><td><code>border-radius</code></td><td>تدوير الزوايا</td><td>px أو %</td></tr>
+      <tr><td><code>display</code></td><td>طريقة عرض العنصر</td><td>block, inline, inline-block, flex, none</td></tr>
+      <tr><td><code>visibility</code></td><td>الرؤية</td><td>visible, hidden (يحتفظ بالمساحة)</td></tr>
+      <tr><td><code>opacity</code></td><td>الشفافية</td><td>0 (شفاف) → 1 (معتم)</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="card">
+  <h3>🔥 TP9 — تقنيات Tooltip و Modal بدون JavaScript</h3>
+  <pre><code><span class="cmt">/* Tooltip — نظرة على :hover */</span>
+.<span class="fn">tooltip</span> { <span class="kw">position</span>: relative; }
+.<span class="fn">tooltip</span> .<span class="fn">tooltip-text</span> {
+  <span class="kw">visibility</span>: hidden;       <span class="cmt">/* مخفي افتراضيًا */</span>
+  <span class="kw">position</span>: absolute;
+  <span class="kw">bottom</span>: 125%;
+}
+.<span class="fn">tooltip:hover</span> .<span class="fn">tooltip-text</span> {
+  <span class="kw">visibility</span>: visible;      <span class="cmt">/* يظهر عند التحويم */</span>
+}
+
+<span class="cmt">/* Modal — نظرة على :target */</span>
+.<span class="fn">modal</span>    { <span class="kw">display</span>: none; <span class="kw">position</span>: fixed; }
+.<span class="fn">modal:target</span> { <span class="kw">display</span>: block; }  <span class="cmt">/* يفتح عند النقر على الرابط */</span></code></pre>
+  <div class="callout success">
+    <span class="ico">✅</span>
+    <div><strong>الفكرة الأساسية لـ TP9:</strong> استعمال CSS pseudo-classes فقط (بدون JS) لتحقيق تفاعلات مثل Tooltip و Modal. هذا نمط متكرر ومهم.</div>
+  </div>
+</div>
+
+<div class="callout danger">
+  <span class="ico">🚨</span>
+  <div><strong>الفرق المهم — display:none vs visibility:hidden</strong><br>
+  <code>display: none</code> → يزيل العنصر تمامًا من التدفق (لا يشغل مساحة)<br>
+  <code>visibility: hidden</code> → يخفي العنصر لكن يحتفظ بمساحته</div>
+</div>
+
+
+<!-- ════════════════════════════════════════════
+     PHP
+     ════════════════════════════════════════════ -->
+<a class="anchor" id="php"></a>
+<div class="section-header">
+  <div class="icon" style="background:#1f1a2f">🐘</div>
+  <h2>المرحلة 2 — ملخص PHP الشامل</h2>
+  <span class="tag">PHP (TP1)</span>
+</div>
+
+<div class="callout info">
+  <span class="ico">💡</span>
+  <div><strong>توجيه الأستاذ:</strong> الامتحان يركّز على <strong>تحليل الكود وفهمه</strong> وليس كتابة برامج كاملة. توقّع أسئلة من نوع: "ماذا يظهر هذا البرنامج؟" / "ما الخطأ في هذا الكود؟" / "اشرح وظيفة هذا الجزء".</div>
+</div>
+
+<div class="grid-2">
+  <div class="card">
+    <h3 style="color:var(--purple)">📌 المبادئ الأساسية</h3>
+    <ul class="styled">
+      <li>PHP يعمل على الـ <strong>serveur</strong> (Server-side)</li>
+      <li>ملف PHP ينتهي بـ <code>.php</code></li>
+      <li>الكود يُكتب بين <code>&lt;?php ... ?&gt;</code></li>
+      <li>كل سطر ينتهي بـ <code>;</code></li>
+      <li>الـ variables تبدأ بـ <code>$</code></li>
+      <li>الـ PHP stateless — لا ذاكرة بين الطلبات</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3 style="color:var(--orange)">🔢 أنواع المتغيرات</h3>
+    <pre><code><span class="var">$nom</span> = <span class="str">"Ahmed"</span>;     <span class="cmt">// String</span>
+<span class="var">$age</span> = <span class="num">25</span>;         <span class="cmt">// Integer</span>
+<span class="var">$prix</span> = <span class="num">9.99</span>;      <span class="cmt">// Float</span>
+<span class="var">$ok</span> = <span class="kw">true</span>;         <span class="cmt">// Boolean</span>
+<span class="var">$tab</span> = [<span class="str">"a"</span>, <span class="str">"b"</span>]; <span class="cmt">// Array</span></code></pre>
+  </div>
+</div>
+
+<div class="card">
+  <h3>🔄 الشروط والتحكم في التنفيذ</h3>
+  <div class="grid-2">
+    <div>
+      <p style="color:var(--accent);font-weight:700;margin-bottom:8px">if / else / elseif</p>
+      <pre><code><span class="var">$note</span> = <span class="num">12</span>;
+<span class="kw">if</span> (<span class="var">$note</span> >= <span class="num">10</span>) {
+    <span class="fn">echo</span> <span class="str">"Admis"</span>;
+} <span class="kw">elseif</span> (<span class="var">$note</span> >= <span class="num">8</span>) {
+    <span class="fn">echo</span> <span class="str">"Rattrapage"</span>;
+} <span class="kw">else</span> {
+    <span class="fn">echo</span> <span class="str">"Ajourné"</span>;
+}</code></pre>
+    </div>
+    <div>
+      <p style="color:var(--accent);font-weight:700;margin-bottom:8px">switch / case / break</p>
+      <pre><code><span class="var">$couleur</span> = <span class="str">"rouge"</span>;
+<span class="kw">switch</span> (<span class="var">$couleur</span>) {
+  <span class="kw">case</span> <span class="str">"rouge"</span>:
+    <span class="fn">echo</span> <span class="str">"Stop"</span>;
+    <span class="kw">break</span>;          <span class="cmt">// مهم جداً!</span>
+  <span class="kw">case</span> <span class="str">"vert"</span>:
+    <span class="fn">echo</span> <span class="str">"Go"</span>;
+    <span class="kw">break</span>;
+  <span class="kw">default</span>:
+    <span class="fn">echo</span> <span class="str">"Inconnu"</span>;
+}</code></pre>
+    </div>
+  </div>
+  <div class="callout warning" style="margin-top:12px">
+    <span class="ico">⚠️</span>
+    <div><strong>break في switch:</strong> بدون <code>break</code>، PHP ينفّذ كل الـ cases التالية (fall-through). هذا خطأ شائع في الامتحان!</div>
+  </div>
+</div>
+
+<div class="card">
+  <h3>🔁 حلقات التكرار — Boucles</h3>
+  <div class="grid-3">
+    <div>
+      <p style="color:var(--green);font-weight:700;margin-bottom:8px">for</p>
+      <pre><code><span class="kw">for</span> (<span class="var">$i</span>=<span class="num">1</span>; <span class="var">$i</span>&lt;=<span class="num">5</span>; <span class="var">$i</span>++) {
+    <span class="fn">echo</span> <span class="var">$i</span> . <span class="str">" "</span>;
+}
+<span class="cmt">// Output: 1 2 3 4 5</span></code></pre>
+    </div>
+    <div>
+      <p style="color:var(--blue);font-weight:700;margin-bottom:8px">while</p>
+      <pre><code><span class="var">$i</span> = <span class="num">0</span>;
+<span class="kw">while</span> (<span class="var">$i</span> &lt;= <span class="num">10</span>) {
+    <span class="kw">if</span> (<span class="var">$i</span> % <span class="num">2</span> == <span class="num">0</span>)
+        <span class="fn">echo</span> <span class="var">$i</span>;
+    <span class="var">$i</span>++;
+}
+<span class="cmt">// Nombres pairs: 0 2 4 6 8 10</span></code></pre>
+    </div>
+    <div>
+      <p style="color:var(--purple);font-weight:700;margin-bottom:8px">foreach</p>
+      <pre><code><span class="var">$etudiants</span> = [<span class="str">"Amine"</span>, <span class="str">"Sara"</span>];
+<span class="fn">echo</span> <span class="str">"&lt;ul&gt;"</span>;
+<span class="kw">foreach</span> (<span class="var">$etudiants</span> <span class="kw">as</span> <span class="var">$e</span>) {
+    <span class="fn">echo</span> <span class="str">"&lt;li&gt;"</span>.<span class="var">$e</span>.<span class="str">"&lt;/li&gt;"</span>;
+}
+<span class="fn">echo</span> <span class="str">"&lt;/ul&gt;"</span>;</code></pre>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <h3>📬 Formulaires — GET et POST</h3>
+  <div class="grid-2">
+    <div>
+      <p style="color:var(--accent4);font-weight:700;margin-bottom:8px">HTML Form</p>
+      <pre><code><span class="kw">&lt;form</span> method=<span class="str">"POST"</span> action=<span class="str">"login.php"</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;input</span> type=<span class="str">"text"</span> name=<span class="str">"user"</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;input</span> type=<span class="str">"password"</span> name=<span class="str">"pass"</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;button</span> type=<span class="str">"submit"</span><span class="kw">&gt;</span>Login<span class="kw">&lt;/button&gt;</span>
+<span class="kw">&lt;/form&gt;</span></code></pre>
+    </div>
+    <div>
+      <p style="color:var(--accent4);font-weight:700;margin-bottom:8px">PHP (login.php)</p>
+      <pre><code><span class="var">$user</span> = <span class="var">$_POST</span>[<span class="str">'user'</span>];
+<span class="var">$pass</span> = <span class="var">$_POST</span>[<span class="str">'pass'</span>];
+
+<span class="cmt">// GET: visible dans l'URL</span>
+<span class="var">$mot</span> = <span class="var">$_GET</span>[<span class="str">'mot'</span>];
+<span class="fn">echo</span> <span class="str">"Vous cherchez: "</span>.<span class="var">$mot</span>;</code></pre>
+    </div>
+  </div>
+  <div class="tbl-wrap" style="margin-top:14px">
+    <table>
+      <tr><th></th><th>GET</th><th>POST</th></tr>
+      <tr><td>الوضوح</td><td>يظهر في URL ❌</td><td>مخفي ✅</td></tr>
+      <tr><td>الأمان</td><td>غير آمن للبيانات الحساسة</td><td>أفضل للكلمات السرية</td></tr>
+      <tr><td>الاستخدام</td><td>بحث، تصفية</td><td>تسجيل دخول، نماذج</td></tr>
+      <tr><td>حجم البيانات</td><td>محدود (URL)</td><td>غير محدود</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="card">
+  <h3>⚙️ الدوال في PHP</h3>
+  <div class="grid-2">
+    <div>
+      <pre><code><span class="cmt">// إنشاء دالة</span>
+<span class="kw">function</span> <span class="fn">calculerMoyenne</span>(<span class="var">$n1</span>, <span class="var">$n2</span>) {
+    <span class="kw">return</span> (<span class="var">$n1</span> + <span class="var">$n2</span>) / <span class="num">2</span>;
+}
+
+<span class="cmt">// استدعاء الدالة</span>
+<span class="var">$moy</span> = <span class="fn">calculerMoyenne</span>(<span class="num">14</span>, <span class="num">16</span>);
+<span class="fn">echo</span> <span class="var">$moy</span>; <span class="cmt">// 15</span></code></pre>
+    </div>
+    <div>
+      <h4 style="color:var(--accent2);margin-bottom:10px">دوال مهمة يجب معرفتها</h4>
+      <ul class="styled">
+        <li><code>echo</code> — عرض نص</li>
+        <li><code>strlen($s)</code> — طول النص</li>
+        <li><code>strtoupper($s)</code> — أحرف كبيرة</li>
+        <li><code>strtolower($s)</code> — أحرف صغيرة</li>
+        <li><code>htmlspecialchars($s)</code> — حماية XSS</li>
+        <li><code>isset($var)</code> — هل المتغير موجود؟</li>
+        <li><code>count($array)</code> — عدد عناصر المصفوفة</li>
+        <li><code>filter_var($v, FILTER_VALIDATE_EMAIL)</code> — تحقق من البريد</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <h3>📁 include / require — إدراج الملفات</h3>
+  <div class="tbl-wrap">
+    <table>
+      <tr><th>الأمر</th><th>إذا لم يجد الملف</th><th>الاستخدام</th></tr>
+      <tr><td><code>include</code></td><td>⚠️ Warning (البرنامج يكمل)</td><td>ملفات اختيارية</td></tr>
+      <tr><td><code>require</code></td><td>❌ Fatal Error (يوقف التنفيذ)</td><td>ملفات ضرورية</td></tr>
+      <tr><td><code>include_once</code></td><td>⚠️ Warning (مرة واحدة فقط)</td><td>تجنب التكرار</td></tr>
+      <tr><td><code>require_once</code></td><td>❌ Fatal Error (مرة واحدة فقط)</td><td>إعدادات DB، config</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="card">
+  <h3>🍪 Sessions et Cookies — الحفاظ على الحالة</h3>
+  <div class="grid-2">
+    <div>
+      <p style="color:var(--blue);font-weight:700;margin-bottom:8px">Session</p>
+      <pre><code><span class="fn">session_start</span>();       <span class="cmt">// في بداية الصفحة</span>
+<span class="var">$_SESSION</span>[<span class="str">"user"</span>] = <span class="str">"Ali"</span>;
+<span class="fn">echo</span> <span class="var">$_SESSION</span>[<span class="str">"user"</span>];
+
+<span class="cmt">// تسجيل خروج</span>
+<span class="fn">session_destroy</span>();</code></pre>
+    </div>
+    <div>
+      <p style="color:var(--yellow);font-weight:700;margin-bottom:8px">Cookie</p>
+      <pre><code><span class="cmt">// تعيين cookie</span>
+<span class="fn">setcookie</span>(<span class="str">"lang"</span>, <span class="str">"fr"</span>, <span class="fn">time</span>()+<span class="num">3600</span>);
+
+<span class="cmt">// قراءة cookie</span>
+<span class="fn">echo</span> <span class="var">$_COOKIE</span>[<span class="str">"lang"</span>];</code></pre>
+      <div class="callout info" style="margin-top:8px">
+        <span class="ico">💡</span>
+        <div>Session: البيانات على السيرفر ✅<br>Cookie: البيانات على المتصفح</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════
+     BDD / SQL
+     ════════════════════════════════════════════ -->
+<a class="anchor" id="bdd"></a>
+<div class="section-header">
+  <div class="icon" style="background:#1a2a1a">🗄️</div>
+  <h2>المرحلة 2 — ملخص BDD / MySQL / SQL</h2>
+  <span class="tag">SQL Essentiel</span>
+</div>
+
+<div class="card">
+  <h3>📋 أوامر SQL الأساسية — جدول كامل</h3>
+  <div class="tbl-wrap">
+    <table>
+      <tr><th>الأمر</th><th>الوظيفة</th><th>مثال</th></tr>
+      <tr><td><code>CREATE DATABASE</code></td><td>إنشاء قاعدة بيانات</td><td><code>CREATE DATABASE GestionStockDB;</code></td></tr>
+      <tr><td><code>USE</code></td><td>اختيار قاعدة البيانات</td><td><code>USE GestionStockDB;</code></td></tr>
+      <tr><td><code>CREATE TABLE</code></td><td>إنشاء جدول</td><td>انظر مثال أدناه</td></tr>
+      <tr><td><code>INSERT INTO</code></td><td>إضافة بيانات</td><td><code>INSERT INTO etudiants (nom, age) VALUES ('Ali', 20);</code></td></tr>
+      <tr><td><code>SELECT</code></td><td>استعلام/قراءة</td><td><code>SELECT * FROM etudiants WHERE age > 18;</code></td></tr>
+      <tr><td><code>UPDATE</code></td><td>تحديث بيانات</td><td><code>UPDATE etudiants SET age=21 WHERE nom='Ali';</code></td></tr>
+      <tr><td><code>DELETE</code></td><td>حذف بيانات</td><td><code>DELETE FROM etudiants WHERE id=5;</code></td></tr>
+      <tr><td><code>DROP TABLE</code></td><td>حذف جدول</td><td><code>DROP TABLE etudiants;</code></td></tr>
+      <tr><td><code>DROP DATABASE</code></td><td>حذف قاعدة البيانات</td><td><code>DROP DATABASE GestionStockDB;</code></td></tr>
+      <tr><td><code>ALTER TABLE</code></td><td>تعديل بنية الجدول</td><td><code>ALTER TABLE etudiants ADD COLUMN email VARCHAR(100);</code></td></tr>
+      <tr><td><code>CREATE USER</code></td><td>إنشاء مستخدم</td><td><code>CREATE USER 'admin'@'localhost' IDENTIFIED BY 'pass';</code></td></tr>
+      <tr><td><code>GRANT ALL PRIVILEGES</code></td><td>منح الصلاحيات</td><td><code>GRANT ALL PRIVILEGES ON GestionStockDB.* TO 'admin'@'localhost';</code></td></tr>
+      <tr><td><code>FLUSH PRIVILEGES</code></td><td>تحديث الصلاحيات</td><td><code>FLUSH PRIVILEGES;</code></td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="card">
+  <h3>🏗️ CREATE TABLE — مثال كامل مع القيود</h3>
+  <pre><code><span class="kw">CREATE TABLE</span> etudiant (
+    id            INT         <span class="kw">PRIMARY KEY AUTO_INCREMENT</span>,
+    nom           VARCHAR(<span class="num">100</span>) <span class="kw">NOT NULL</span>,
+    email         VARCHAR(<span class="num">100</span>) <span class="kw">UNIQUE</span>,
+    age           INT         <span class="kw">CHECK</span> (age > <span class="num">0</span>),
+    date_creation DATETIME    <span class="kw">DEFAULT CURRENT_TIMESTAMP</span>,
+    id_module     INT,
+    <span class="kw">FOREIGN KEY</span> (id_module) <span class="kw">REFERENCES</span> module(id_module)
+);</code></pre>
+</div>
+
+<div class="card">
+  <h3>🔗 Contraintes — جدول المفاهيم</h3>
+  <div class="tbl-wrap">
+    <table>
+      <tr><th>القيد</th><th>المعنى</th><th>مثال SQL</th></tr>
+      <tr><td><code>PRIMARY KEY</code></td><td>مفتاح أساسي — فريد وغير فارغ</td><td><code>id INT PRIMARY KEY AUTO_INCREMENT</code></td></tr>
+      <tr><td><code>FOREIGN KEY</code></td><td>مفتاح أجنبي — يربط بجدول آخر</td><td><code>FOREIGN KEY (id_client) REFERENCES clients(id)</code></td></tr>
+      <tr><td><code>UNIQUE</code></td><td>لا قيمتين متشابهتين</td><td><code>email VARCHAR(100) UNIQUE</code></td></tr>
+      <tr><td><code>NOT NULL</code></td><td>الحقل إلزامي</td><td><code>nom VARCHAR(100) NOT NULL</code></td></tr>
+      <tr><td><code>CHECK</code></td><td>شرط خاص</td><td><code>CHECK (prix > 0)</code></td></tr>
+      <tr><td><code>DEFAULT</code></td><td>قيمة افتراضية</td><td><code>DEFAULT CURRENT_TIMESTAMP</code></td></tr>
+      <tr><td><code>AUTO_INCREMENT</code></td><td>يزيد تلقائيًا (للـ id)</td><td><code>id INT AUTO_INCREMENT</code></td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="card">
+  <h3>🔌 الاتصال بقاعدة البيانات بـ PHP — PDO</h3>
+  <pre><code><span class="var">$serveur</span>   = <span class="str">"localhost"</span>;
+<span class="var">$utilisateur</span> = <span class="str">"adminstock"</span>;
+<span class="var">$motDePasse</span>  = <span class="str">"Ens"</span>;
+<span class="var">$baseDeDonnees</span> = <span class="str">"GestionStockDB"</span>;
+
+<span class="kw">try</span> {
+    <span class="var">$pdo</span> = <span class="kw">new</span> <span class="fn">PDO</span>(
+        <span class="str">"mysql:host=</span><span class="var">$serveur</span><span class="str">;dbname=</span><span class="var">$baseDeDonnees</span><span class="str">"</span>,
+        <span class="var">$utilisateur</span>, <span class="var">$motDePasse</span>
+    );
+    <span class="var">$pdo</span>-><span class="fn">setAttribute</span>(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    <span class="fn">echo</span> <span class="str">"Connexion réussie!"</span>;
+} <span class="kw">catch</span> (Exception <span class="var">$e</span>) {
+    <span class="fn">echo</span> <span class="str">"Erreur: "</span> . <span class="var">$e</span>-><span class="fn">getMessage</span>();
+}</code></pre>
+  <div class="tbl-wrap" style="margin-top:12px">
+    <table>
+      <tr><th>المكوّن</th><th>الوظيفة</th></tr>
+      <tr><td><code>new PDO(...)</code></td><td>ينشئ كائن الاتصال — يحدد MySQL + الخادم + قاعدة البيانات</td></tr>
+      <tr><td><code>try...catch</code></td><td>معالجة الأخطاء — يمنع توقف التطبيق</td></tr>
+      <tr><td><code>setAttribute + ERRMODE_EXCEPTION</code></td><td>يجعل الأخطاء تُلتقط بـ catch</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="card">
+  <h3>⚡ Triggers و Procédures Stockées</h3>
+  <div class="grid-2">
+    <div>
+      <p style="color:var(--accent2);font-weight:700;margin-bottom:8px">Trigger — مثال الأسعار</p>
+      <pre><code>DELIMITER //
+<span class="kw">CREATE TRIGGER</span> avant_update_prix
+<span class="kw">BEFORE UPDATE ON</span> produits
+<span class="kw">FOR EACH ROW</span>
+<span class="kw">BEGIN</span>
+    <span class="kw">IF</span> OLD.prix <> NEW.prix <span class="kw">THEN</span>
+        <span class="kw">INSERT INTO</span> historique_prix
+        VALUES (OLD.id, OLD.prix, NEW.prix, NOW());
+    <span class="kw">END IF</span>;
+<span class="kw">END</span>; //
+DELIMITER ;</code></pre>
+    </div>
+    <div>
+      <div class="callout info" style="margin-bottom:12px">
+        <span class="ico">🔑</span>
+        <div><strong>OLD</strong> = القيمة قبل التعديل<br><strong>NEW</strong> = القيمة بعد التعديل</div>
+      </div>
+      <div class="tbl-wrap">
+        <table>
+          <tr><th>نوع</th><th>التوقيت</th><th>الاستدعاء</th></tr>
+          <tr><td>Trigger</td><td>تلقائي عند INSERT/UPDATE/DELETE</td><td>لا يُستدعى مباشرة</td></tr>
+          <tr><td>Procédure</td><td>يدوي</td><td><code>CALL nom_proc();</code></td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════
+     SÉCURITÉ
+     ════════════════════════════════════════════ -->
+<a class="anchor" id="security"></a>
+<div class="section-header">
+  <div class="icon" style="background:#2a1a1a">🛡️</div>
+  <h2>المرحلة 2 — الأمان: Attaques vs Protection</h2>
+  <span class="tag">⭐ مهم جداً</span>
+</div>
+
+<div class="callout danger">
+  <span class="ico">🔥</span>
+  <div><strong>قال الأستاذ:</strong> هناك ~8 هجمات. يجب فهم وظيفة كل هجوم. قد يعطي كود ويسأل ماذا يفعل. لا يطلب كتابة PDO كامل — فقط الفهم.</div>
+</div>
+
+<div class="attack-card">
+  <h4>⚡ 1. SQL Injection — حقن SQL</h4>
+  <div class="grid-2">
+    <div>
+      <p class="text-muted" style="margin-bottom:6px">❌ كود خطير (بدون حماية)</p>
+      <pre><code><span class="var">$sql</span> = <span class="str">"SELECT * FROM users 
+  WHERE username='</span><span class="var">$user</span><span class="str">' 
+  AND password='</span><span class="var">$pass</span><span class="str">'"</span>;
+<span class="cmt">// الهجوم: نكتب في حقل username:
+// ' OR '1'='1
+// → يتجاوز كلمة المرور!</span></code></pre>
+    </div>
+    <div>
+      <p class="text-muted" style="margin-bottom:6px">✅ حماية بـ PDO</p>
+      <pre><code><span class="var">$stmt</span> = <span class="var">$pdo</span>-><span class="fn">prepare</span>(
+  <span class="str">"SELECT * FROM users 
+   WHERE username = :u 
+   AND password = :p"</span>
+);
+<span class="var">$stmt</span>-><span class="fn">execute</span>([
+    <span class="str">':u'</span> => <span class="var">$user</span>,
+    <span class="str">':p'</span> => <span class="var">$pass</span>
+]);</code></pre>
+    </div>
+  </div>
+  <div class="tbl-wrap" style="margin-top:10px">
+    <table>
+      <tr><th>العنصر</th><th>الوظيفة</th></tr>
+      <tr><td><code>prepare()</code></td><td>يُفصل الكود SQL عن البيانات — الاستعلام يُحضَّر أولًا بدون بيانات</td></tr>
+      <tr><td><code>execute()</code></td><td>يُدخل البيانات بأمان — حتى لو تضمنت ' أو " لن تُنفَّذ كـ SQL</td></tr>
+      <tr><td><code>:u / :p</code></td><td>Placeholders — أماكن آمنة لاستقبال البيانات</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="attack-card">
+  <h4>⚡ 2. XSS — Cross Site Scripting</h4>
+  <div class="grid-2">
+    <div>
+      <p class="text-muted" style="margin-bottom:6px">❌ بدون حماية</p>
+      <pre><code><span class="fn">echo</span> <span class="var">$_POST</span>[<span class="str">'comment'</span>];
+<span class="cmt">// المهاجم يُدخل:
+// &lt;script&gt;alert('hack')&lt;/script&gt;
+// → ينفّذ JS في متصفح الضحية!</span></code></pre>
+    </div>
+    <div>
+      <p class="text-muted" style="margin-bottom:6px">✅ حماية بـ htmlspecialchars</p>
+      <pre><code><span class="fn">echo</span> <span class="fn">htmlspecialchars</span>(
+    <span class="var">$_POST</span>[<span class="str">'comment'</span>],
+    ENT_QUOTES,
+    <span class="str">'UTF-8'</span>
+);
+<span class="cmt">// &lt;script&gt; → &amp;lt;script&amp;gt;
+// يظهر كنص، لا يُنفَّذ ✅</span></code></pre>
+    </div>
+  </div>
+  <div class="tbl-wrap" style="margin-top:10px">
+    <table>
+      <tr><th>المعامل</th><th>الوظيفة</th></tr>
+      <tr><td><code>htmlspecialchars()</code></td><td>تحوّل < > & ' " إلى entities HTML آمنة</td></tr>
+      <tr><td><code>ENT_QUOTES</code></td><td>تحمي علامات الاقتباس المفردة والمزدوجة</td></tr>
+      <tr><td><code>'UTF-8'</code></td><td>ترميز آمن لتجنب مشاكل التشفير</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="card">
+  <h3>📋 جدول الهجمات الـ 8 — ملخص شامل</h3>
+  <div class="tbl-wrap">
+    <table>
+      <tr><th>الهجوم</th><th>الهدف</th><th>كيف يعمل</th><th>الحماية</th></tr>
+      <tr><td><strong>SQL Injection</strong></td><td>قراءة/تعديل/حذف قاعدة البيانات</td><td>حقن SQL في الاستعلام</td><td><code>PDO prepare/execute</code></td></tr>
+      <tr><td><strong>XSS</strong></td><td>تنفيذ JS في متصفح المستخدم</td><td>حقن &lt;script&gt; في حقل نص</td><td><code>htmlspecialchars()</code></td></tr>
+      <tr><td><strong>CSRF</strong></td><td>تنفيذ طلبات باسم المستخدم</td><td>رابط مزيف يُرسل طلب POST</td><td>Token CSRF في النموذج</td></tr>
+      <tr><td><strong>Brute Force</strong></td><td>تخمين كلمة المرور</td><td>تجربة آلاف الكلمات</td><td>تحديد عدد المحاولات، CAPTCHA</td></tr>
+      <tr><td><strong>Session Hijacking</strong></td><td>سرقة جلسة المستخدم</td><td>سرقة session ID</td><td>HTTPS، تجديد session_id()</td></tr>
+      <tr><td><strong>File Inclusion</strong></td><td>تضمين ملف خارجي خطير</td><td>تغيير متغير include</td><td>التحقق من اسم الملف</td></tr>
+      <tr><td><strong>Directory Traversal</strong></td><td>الوصول لملفات خارج المسموح</td><td>../../../etc/passwd</td><td>basename()، realpath()</td></tr>
+      <tr><td><strong>Clickjacking</strong></td><td>خداع المستخدم بالنقر</td><td>iframe شفاف فوق المحتوى</td><td>X-Frame-Options header</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="card">
+  <h3>🧹 دالة clean() — الحماية الشاملة</h3>
+  <pre><code><span class="fn">session_start</span>();   <span class="cmt">// 1. بدء الجلسة</span>
+
+<span class="kw">function</span> <span class="fn">clean</span>(<span class="var">$d</span>) {
+    <span class="kw">return</span> <span class="fn">htmlspecialchars</span>(<span class="var">$d</span>, ENT_QUOTES, <span class="str">'UTF-8'</span>);
+    <span class="cmt">// 2. تحويل الرموز الخطرة لنص آمن</span>
+}
+
+<span class="var">$user</span> = <span class="fn">clean</span>(<span class="var">$_POST</span>[<span class="str">'user'</span>]);  <span class="cmt">// 3. تنظيف البيانات</span>
+<span class="var">$pass</span> = <span class="fn">clean</span>(<span class="var">$_POST</span>[<span class="str">'pass'</span>]);  <span class="cmt">// 4. قبل أي معالجة</span></code></pre>
+</div>
+
+
+<!-- ════════════════════════════════════════════
+     POO
+     ════════════════════════════════════════════ -->
+<a class="anchor" id="poo"></a>
+<div class="section-header">
+  <div class="icon" style="background:#1a1a2a">🧩</div>
+  <h2>المرحلة 2 — POO (البرمجة الكائنية)</h2>
+  <span class="tag">Orienté Objet</span>
+</div>
+
+<div class="card">
+  <h3>📖 المفاهيم الأساسية</h3>
+  <div class="tbl-wrap">
+    <table>
+      <tr><th>المفهوم</th><th>التعريف</th><th>مثال</th></tr>
+      <tr><td><strong>Classe</strong></td><td>المخطط العام — النموذج لبناء الكائنات</td><td><code>class Voiture { }</code></td></tr>
+      <tr><td><strong>Objet</strong></td><td>نسخة حقيقية من الكلاس</td><td><code>$v = new Voiture();</code></td></tr>
+      <tr><td><strong>Propriété</strong></td><td>متغير داخل الكلاس</td><td><code>public $couleur;</code></td></tr>
+      <tr><td><strong>Méthode</strong></td><td>دالة داخل الكلاس</td><td><code>public function rouler() { }</code></td></tr>
+      <tr><td><strong>Constructeur</strong></td><td>دالة تُنفَّذ عند إنشاء الكائن</td><td><code>function __construct($c) { $this->couleur = $c; }</code></td></tr>
+      <tr><td><strong>$this</strong></td><td>يشير للكائن الحالي</td><td><code>$this->nom</code></td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="card">
+  <h3>🏛️ أركان POO الثلاثة</h3>
+  <div class="grid-3">
+    <div class="callout info">
+      <span class="ico">🔒</span>
+      <div><strong>Encapsulation (التغليف)</strong><br>حماية البيانات الداخلية بـ private/protected<br><code>private $code;</code></div>
+    </div>
+    <div class="callout success">
+      <span class="ico">🧬</span>
+      <div><strong>Héritage (الوراثة)</strong><br>صنف يرث من صنف آخر<br><code>class Sport extends Voiture</code></div>
+    </div>
+    <div class="callout warning">
+      <span class="ico">🔀</span>
+      <div><strong>Polymorphisme</strong><br>نفس الدالة بسلوك مختلف حسب الكائن<br>override الـ méthode</div>
+    </div>
+  </div>
+  <pre style="margin-top:14px"><code><span class="kw">class</span> <span class="fn">Voiture</span> {
+    <span class="kw">public</span> <span class="kw">function</span> <span class="fn">vitesseMax</span>() { <span class="kw">return</span> <span class="str">"غير محدد"</span>; }
+}
+
+<span class="kw">class</span> <span class="fn">VoitureCourse</span> <span class="kw">extends</span> <span class="fn">Voiture</span> {
+    <span class="kw">public</span> <span class="kw">function</span> <span class="fn">vitesseMax</span>() { <span class="kw">return</span> <span class="str">"350 km/h"</span>; }  <span class="cmt">// override</span>
+}
+
+<span class="var">$v</span> = <span class="kw">new</span> <span class="fn">VoitureCourse</span>();
+<span class="fn">echo</span> <span class="var">$v</span>-><span class="fn">vitesseMax</span>(); <span class="cmt">// 350 km/h</span></code></pre>
+</div>
+
+
+<!-- ════════════════════════════════════════════
+     ANALYSE TP
+     ════════════════════════════════════════════ -->
+<a class="anchor" id="tp-analysis"></a>
+<div class="section-header">
+  <div class="icon" style="background:#1a2a3a">🔬</div>
+  <h2>المرحلة 4 — تحليل شامل للـ TP</h2>
+  <span class="tag">⭐ الأهم للامتحان</span>
+</div>
+
+<div class="callout success">
+  <span class="ico">🏆</span>
+  <div><strong>الأولوية القصوى:</strong> الأستاذ أكد أن الجزء التطبيقي هو الأهم. الامتحان التطبيقي سيكون مطابقًا لنمط هذه الـ TP.</div>
+</div>
+
+<div class="card">
+  <h3>📂 قائمة ملفات TP المحللة</h3>
+  <div class="tbl-wrap">
+    <table>
+      <tr><th>ملف TP</th><th>المحاور</th><th>المستوى</th><th>ما قد يأتي في الامتحان</th></tr>
+      <tr><td><strong>TP 1 PHP</strong></td><td>Variables, Conditions, Switch, Boucles, GET/POST, Functions</td><td>⭐⭐⭐ أساسي</td><td>كتابة كود PHP أو تحليله — سيأتي بالتأكيد</td></tr>
+      <tr><td><strong>TP 6-1 CSS</strong></td><td>Sélecteurs (15 تمرين)</td><td>⭐⭐⭐ أساسي</td><td>تطبيق سيليكتور معين</td></tr>
+      <tr><td><strong>TP 7 CSS sol</strong></td><td>Sélecteurs متقدمة: :has(), :not(), :is(), +, ~</td><td>⭐⭐⭐ متقدم</td><td>قراءة كود CSS وشرح ما يفعله</td></tr>
+      <tr><td><strong>TP 8 CSS</strong></td><td>Colors, Background, Text, Border, Box Model</td><td>⭐⭐ متوسط</td><td>كتابة CSS لعنصر معين</td></tr>
+      <tr><td><strong>TP 8 CSS sol</strong></td><td>نفس TP8 مع الحلول الكاملة</td><td>— مرجع</td><td>راجع الحلول بعناية</td></tr>
+      <tr><td><strong>TP 9 CSS sol</strong></td><td>Tooltip + Modal بدون JS (:hover, :target)</td><td>⭐⭐ متقدم</td><td>فهم كيف يعمل كود CSS التفاعلي</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="card">
+  <h3>🔁 الـ Patterns المتكررة في الـ TP</h3>
+  <div class="grid-2">
+    <div>
+      <h4 style="color:var(--accent);margin-bottom:10px">في TP PHP:</h4>
+      <ul class="styled">
+        <li>نموذج HTML + معالجة PHP في نفس الصفحة أو ملف منفصل</li>
+        <li>التحقق من البيانات قبل المعالجة</li>
+        <li>استخدام <code>echo</code> داخل HTML</li>
+        <li>دمج PHP مع HTML بشكل صحيح</li>
+        <li>حلقة foreach لعرض مصفوفة</li>
+        <li>دوال بسيطة تُرجع قيمة</li>
+      </ul>
+    </div>
+    <div>
+      <h4 style="color:var(--green);margin-bottom:10px">في TP CSS:</h4>
+      <ul class="styled">
+        <li>انتخاب بدقة بالكلاس، الـ ID، النوع</li>
+        <li>سيليكتورات متداخلة (div p، ul > li)</li>
+        <li>Pseudo-classes (:hover, :focus, :invalid)</li>
+        <li>Pseudo-elements (::before, ::after, ::placeholder)</li>
+        <li>السيليكتورات الحديثة (:has, :not, :is)</li>
+        <li>الـ Box Model (margin, padding, border)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════
+     EXERCICES
+     ════════════════════════════════════════════ -->
+<a class="anchor" id="exercises"></a>
+<div class="section-header">
+  <div class="icon" style="background:#1f2a1f">✏️</div>
+  <h2>المرحلة 5 — 4 تمارين شاملة (Exam Style)</h2>
+  <span class="tag">تغطي كامل المنهج</span>
+</div>
+
+<!-- EXERCISE 1 -->
+<div class="exercise">
+  <div class="ex-header">
+    <div class="num">1</div>
+    <div>
+      <h4>تمرين PHP — المتغيرات، الشروط، الحلقات، الدوال</h4>
+      <span class="text-muted">مثل TP1 PHP — المستوى: أساسي → متوسط</span>
+    </div>
+  </div>
+  <div class="ex-body">
+    <h5>📋 المطلوب</h5>
+    <p>أنشئ برنامج PHP يقوم بما يلي:</p>
+    <ul class="styled" style="margin-top:8px">
+      <li>تعريف مصفوفة <code>$notes = [14, 7, 18, 9, 11]</code></li>
+      <li>كتابة دالة <code>calculerMoyenne($notes)</code> تحسب المعدل</li>
+      <li>عرض كل نقطة مع <strong>Admis</strong> إذا >= 10 و <strong>Ajourné</strong> إذا < 10</li>
+      <li>عرض المعدل العام في النهاية</li>
+    </ul>
+
+    <h5>🔍 تحليل الفكرة</h5>
+    <p>يجمع هذا التمرين: المصفوفات + foreach + if/else + functions + echo HTML. هذا النمط يتكرر كثيرًا في TP1.</p>
+
+    <h5>✅ الحل الكامل والمشروح</h5>
+    <pre><code><?php
+<span class="kw">function</span> <span class="fn">calculerMoyenne</span>(<span class="var">$notes</span>) {
+    <span class="var">$total</span> = <span class="num">0</span>;
+    <span class="kw">foreach</span> (<span class="var">$notes</span> <span class="kw">as</span> <span class="var">$n</span>) {
+        <span class="var">$total</span> += <span class="var">$n</span>;   <span class="cmt">// تراكم المجموع</span>
+    }
+    <span class="kw">return</span> <span class="var">$total</span> / <span class="fn">count</span>(<span class="var">$notes</span>);  <span class="cmt">// count() = عدد العناصر</span>
+}
+
+<span class="var">$notes</span> = [<span class="num">14</span>, <span class="num">7</span>, <span class="num">18</span>, <span class="num">9</span>, <span class="num">11</span>];
+
+<span class="fn">echo</span> <span class="str">"&lt;ul&gt;"</span>;
+<span class="kw">foreach</span> (<span class="var">$notes</span> <span class="kw">as</span> <span class="var">$note</span>) {
+    <span class="var">$statut</span> = (<span class="var">$note</span> >= <span class="num">10</span>) ? <span class="str">"Admis ✅"</span> : <span class="str">"Ajourné ❌"</span>;
+    <span class="fn">echo</span> <span class="str">"&lt;li&gt;</span><span class="var">$note</span><span class="str"> — </span><span class="var">$statut</span><span class="str">&lt;/li&gt;"</span>;
+}
+<span class="fn">echo</span> <span class="str">"&lt;/ul&gt;"</span>;
+
+<span class="var">$moy</span> = <span class="fn">calculerMoyenne</span>(<span class="var">$notes</span>);
+<span class="fn">echo</span> <span class="str">"&lt;p&gt;Moyenne générale : </span><span class="var">$moy</span><span class="str">&lt;/p&gt;"</span>;
+?></code></pre>
+
+    <h5>🔑 لماذا هذه الطريقة؟</h5>
+    <ul class="styled">
+      <li>استعمال <strong>foreach</strong> لأنها الأنسب للمصفوفات (لا نحتاج index)</li>
+      <li>الـ <strong>ternary operator</strong> <code>(condition) ? "نعم" : "لا"</code> يختصر if/else</li>
+      <li><code>count()</code> يُعطي عدد عناصر المصفوفة</li>
+    </ul>
+
+    <h5>⚠️ الأخطاء المحتملة</h5>
+    <ul class="styled">
+      <li>نسيان <code>;</code> في نهاية السطر</li>
+      <li>كتابة <code>$_notes</code> بدل <code>$notes</code></li>
+      <li>القسمة على صفر إذا كانت المصفوفة فارغة</li>
+    </ul>
+
+    <h5>📝 Exam Style — ماذا سيظهر هذا الكود؟</h5>
+    <div class="callout success">
+      <span class="ico">📤</span>
+      <div>Output: 14 — Admis ✅ | 7 — Ajourné ❌ | 18 — Admis ✅ | 9 — Ajourné ❌ | 11 — Admis ✅ | Moyenne générale : 11.8</div>
+    </div>
+  </div>
+</div>
+
+<!-- EXERCISE 2 -->
+<div class="exercise">
+  <div class="ex-header">
+    <div class="num">2</div>
+    <div>
+      <h4>تمرين CSS — Sélecteurs متقدمة (TP6, TP7 Style)</h4>
+      <span class="text-muted">يغطي: sélecteurs, pseudo-classes, pseudo-elements</span>
+    </div>
+  </div>
+  <div class="ex-body">
+    <h5>📋 المطلوب</h5>
+    <p>لديك هذا HTML. اكتب CSS محدد لكل طلب:</p>
+    <pre><code><span class="kw">&lt;section&gt;</span>
+  <span class="kw">&lt;article&gt;</span>
+    <span class="kw">&lt;img</span> src=<span class="str">"photo.jpg"</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;h2&gt;</span>Titre<span class="kw">&lt;/h2&gt;</span>
+    <span class="kw">&lt;p&gt;</span>Premier paragraphe<span class="kw">&lt;/p&gt;</span>
+    <span class="kw">&lt;p</span> class=<span class="str">"error"</span><span class="kw">&gt;</span>Erreur<span class="kw">&lt;/p&gt;</span>
+  <span class="kw">&lt;/article&gt;</span>
+  <span class="kw">&lt;article&gt;</span>
+    <span class="kw">&lt;h2&gt;</span>Sans image<span class="kw">&lt;/h2&gt;</span>
+    <span class="kw">&lt;p&gt;</span>Non stylisé<span class="kw">&lt;/p&gt;</span>
+  <span class="kw">&lt;/article&gt;</span>
+<span class="kw">&lt;/section&gt;</span></code></pre>
+    <ol style="margin:10px 0 10px 20px;color:var(--text)">
+      <li>أجعل النص في <code>&lt;p&gt;</code> داخل article يحتوي صورة — باللون الأزرق وعريض — لكن ليس <code>.error</code></li>
+      <li>أضف ◆ قبل كل <code>&lt;h2&gt;</code></li>
+      <li>عند تحويم الفأرة على article، غيّر لون خلفيته</li>
+      <li>استهدف الفقرة مباشرة بعد h2</li>
+    </ol>
+
+    <h5>✅ الحل الكامل</h5>
+    <pre><code><span class="cmt">/* 1. article يحتوي صورة، الفقرة بعد h2، ليس .error */</span>
+<span class="fn">article:has(img) h2 + p:not(.error)</span> {
+    <span class="kw">color</span>: blue;
+    <span class="kw">font-weight</span>: bold;
+}
+
+<span class="cmt">/* 2. إضافة ◆ قبل h2 */</span>
+<span class="fn">h2::before</span> {
+    <span class="kw">content</span>: <span class="str">"◆ "</span>;
+    <span class="kw">color</span>: #58a6ff;
+}
+
+<span class="cmt">/* 3. تحويم على article */</span>
+<span class="fn">article:hover</span> {
+    <span class="kw">background-color</span>: #f0f4ff;
+}
+
+<span class="cmt">/* 4. الفقرة مباشرة بعد h2 */</span>
+<span class="fn">h2 + p</span> {
+    <span class="kw">font-size</span>: 1.1em;
+    <span class="kw">color</span>: #333;
+}</code></pre>
+
+    <h5>🔑 شرح كل سطر</h5>
+    <ul class="styled">
+      <li><code>article:has(img)</code> — يستهدف article التي <em>تحتوي</em> على img</li>
+      <li><code>h2 + p</code> — يستهدف p <em>مباشرة</em> بعد h2 (أخ مجاور)</li>
+      <li><code>:not(.error)</code> — يستثني العناصر التي لها كلاس error</li>
+      <li><code>::before</code> — يضيف محتوى قبل العنصر (pseudo-element)</li>
+    </ul>
+  </div>
+</div>
+
+<!-- EXERCISE 3 -->
+<div class="exercise">
+  <div class="ex-header">
+    <div class="num">3</div>
+    <div>
+      <h4>تمرين SQL + PHP — قاعدة بيانات ونموذج</h4>
+      <span class="text-muted">يغطي: CREATE TABLE, INSERT, SELECT, connexion PDO</span>
+    </div>
+  </div>
+  <div class="ex-body">
+    <h5>📋 المطلوب</h5>
+    <p>أنشئ قاعدة بيانات <code>BiblioDB</code> تحتوي جدول <code>livres</code>. ثم أنشئ نموذج PHP لإضافة كتاب وعرض قائمة الكتب.</p>
+
+    <h5>✅ الحل — الجزء SQL</h5>
+    <pre><code><span class="kw">CREATE DATABASE</span> BiblioDB;
+<span class="kw">USE</span> BiblioDB;
+
+<span class="kw">CREATE TABLE</span> livres (
+    id      INT         <span class="kw">PRIMARY KEY AUTO_INCREMENT</span>,
+    titre   VARCHAR(<span class="num">200</span>) <span class="kw">NOT NULL</span>,
+    auteur  VARCHAR(<span class="num">100</span>) <span class="kw">NOT NULL</span>,
+    annee   INT         <span class="kw">CHECK</span> (annee > <span class="num">1000</span>)
+);
+
+<span class="kw">INSERT INTO</span> livres (titre, auteur, annee)
+<span class="kw">VALUES</span> (<span class="str">'Le Petit Prince'</span>, <span class="str">'Saint-Exupéry'</span>, <span class="num">1943</span>);
+
+<span class="kw">SELECT</span> * <span class="kw">FROM</span> livres <span class="kw">WHERE</span> annee > <span class="num">2000</span>;
+<span class="kw">UPDATE</span> livres <span class="kw">SET</span> annee = <span class="num">1944</span> <span class="kw">WHERE</span> id = <span class="num">1</span>;
+<span class="kw">DELETE FROM</span> livres <span class="kw">WHERE</span> id = <span class="num">5</span>;</code></pre>
+
+    <h5>✅ الحل — PHP + PDO (الجزء المهم للامتحان)</h5>
+    <pre><code><?php
+<span class="kw">try</span> {
+    <span class="var">$pdo</span> = <span class="kw">new</span> <span class="fn">PDO</span>(<span class="str">"mysql:host=localhost;dbname=BiblioDB"</span>, <span class="str">"root"</span>, <span class="str">""</span>);
+    <span class="var">$pdo</span>-><span class="fn">setAttribute</span>(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    <span class="cmt">// إضافة كتاب (prepared statement للحماية)</span>
+    <span class="var">$stmt</span> = <span class="var">$pdo</span>-><span class="fn">prepare</span>(<span class="str">"INSERT INTO livres (titre, auteur) VALUES (:t, :a)"</span>);
+    <span class="var">$stmt</span>-><span class="fn">execute</span>([<span class="str">':t'</span> => <span class="str">"Guerre et Paix"</span>, <span class="str">':a'</span> => <span class="str">"Tolstoï"</span>]);
+
+    <span class="cmt">// عرض الكتب</span>
+    <span class="var">$result</span> = <span class="var">$pdo</span>-><span class="fn">query</span>(<span class="str">"SELECT * FROM livres"</span>);
+    <span class="kw">foreach</span> (<span class="var">$result</span> <span class="kw">as</span> <span class="var">$row</span>) {
+        <span class="fn">echo</span> <span class="str">"&lt;p&gt;"</span> . <span class="fn">htmlspecialchars</span>(<span class="var">$row</span>[<span class="str">'titre'</span>]) . <span class="str">"&lt;/p&gt;"</span>;
+    }
+} <span class="kw">catch</span> (Exception <span class="var">$e</span>) {
+    <span class="fn">echo</span> <span class="str">"Erreur: "</span> . <span class="var">$e</span>-><span class="fn">getMessage</span>();
+}
+?></code></pre>
+
+    <h5>⚠️ لماذا نستعمل prepare + execute وليس query مباشرة؟</h5>
+    <div class="callout danger">
+      <span class="ico">🛡️</span>
+      <div><code>query()</code> مع بيانات المستخدم = خطر SQL Injection!<br><code>prepare()/execute()</code> يعزل البيانات عن الكود → آمن تمامًا</div>
+    </div>
+  </div>
+</div>
+
+<!-- EXERCISE 4 -->
+<div class="exercise">
+  <div class="ex-header">
+    <div class="num">4</div>
+    <div>
+      <h4>تمرين POO + Sécurité — نموذج تسجيل دخول آمن</h4>
+      <span class="text-muted">يغطي: POO + SQL Injection + XSS + PDO + Sessions</span>
+    </div>
+  </div>
+  <div class="ex-body">
+    <h5>📋 المطلوب — تحليل هذا الكود وشرح ما يفعله سطرًا بسطر</h5>
+    <pre><code><?php
+<span class="fn">session_start</span>();
+
+<span class="kw">function</span> <span class="fn">clean</span>(<span class="var">$d</span>) {
+    <span class="kw">return</span> <span class="fn">htmlspecialchars</span>(<span class="var">$d</span>, ENT_QUOTES, <span class="str">'UTF-8'</span>);
+}
+
+<span class="kw">if</span> (<span class="var">$_SERVER</span>[<span class="str">'REQUEST_METHOD'</span>] == <span class="str">'POST'</span>) {
+    <span class="var">$user</span> = <span class="fn">clean</span>(<span class="var">$_POST</span>[<span class="str">'user'</span>]);
+    <span class="var">$pass</span> = <span class="fn">clean</span>(<span class="var">$_POST</span>[<span class="str">'pass'</span>]);
+
+    <span class="kw">try</span> {
+        <span class="var">$pdo</span> = <span class="kw">new</span> <span class="fn">PDO</span>(<span class="str">"mysql:host=localhost;dbname=users_db"</span>, <span class="str">"root"</span>, <span class="str">""</span>);
+        <span class="var">$stmt</span> = <span class="var">$pdo</span>-><span class="fn">prepare</span>(<span class="str">"SELECT * FROM users WHERE username=:u AND password=:p"</span>);
+        <span class="var">$stmt</span>-><span class="fn">execute</span>([<span class="str">':u'</span>=><span class="var">$user</span>, <span class="str">':p'</span>=><span class="var">$pass</span>]);
+        <span class="var">$row</span> = <span class="var">$stmt</span>-><span class="fn">fetch</span>();
+
+        <span class="kw">if</span> (<span class="var">$row</span>) {
+            <span class="var">$_SESSION</span>[<span class="str">'logged_in'</span>] = <span class="kw">true</span>;
+            <span class="var">$_SESSION</span>[<span class="str">'username'</span>] = <span class="var">$user</span>;
+            <span class="fn">header</span>(<span class="str">'Location: dashboard.php'</span>);
+        } <span class="kw">else</span> {
+            <span class="fn">echo</span> <span class="str">"Identifiants incorrects"</span>;
+        }
+    } <span class="kw">catch</span> (Exception <span class="var">$e</span>) {
+        <span class="fn">echo</span> <span class="str">"Erreur DB"</span>;
+    }
+}
+?></code></pre>
+
+    <h5>📖 شرح سطر بسطر — Exam Style</h5>
+    <div class="tbl-wrap">
+      <table>
+        <tr><th>السطر</th><th>الشرح</th><th>الأهمية</th></tr>
+        <tr><td><code>session_start()</code></td><td>يبدأ الجلسة — ضروري في بداية كل صفحة تستخدم $_SESSION</td><td><span class="p-high">مهم</span></td></tr>
+        <tr><td><code>clean($d)</code></td><td>دالة تنظيف — تحوّل الرموز الخطرة مثل &lt; &gt; إلى نص آمن (حماية XSS)</td><td><span class="p-high">أمان</span></td></tr>
+        <tr><td><code>$_SERVER['REQUEST_METHOD']=='POST'</code></td><td>يتحقق أن النموذج أُرسل بطريقة POST</td><td><span class="p-med">تحقق</span></td></tr>
+        <tr><td><code>clean($_POST['user'])</code></td><td>يأخذ بيانات المستخدم ويُنظّفها من XSS</td><td><span class="p-high">أمان</span></td></tr>
+        <tr><td><code>new PDO(...)</code></td><td>ينشئ الاتصال بقاعدة البيانات</td><td><span class="p-high">BDD</span></td></tr>
+        <tr><td><code>prepare(...)</code></td><td>يُحضّر الاستعلام بـ placeholders — يمنع SQL Injection</td><td><span class="p-high">أمان</span></td></tr>
+        <tr><td><code>execute([':u'=>$user...])</code></td><td>يُدخل البيانات بأمان في الاستعلام</td><td><span class="p-high">أمان</span></td></tr>
+        <tr><td><code>fetch()</code></td><td>يُعيد أول صف من النتيجة (أو false إن لم يوجد)</td><td><span class="p-med">قراءة</span></td></tr>
+        <tr><td><code>$_SESSION['logged_in']=true</code></td><td>يُسجّل في الجلسة أن المستخدم دخل بنجاح</td><td><span class="p-high">Session</span></td></tr>
+        <tr><td><code>header('Location: ...')</code></td><td>يُعيد توجيه المتصفح لصفحة أخرى</td><td><span class="p-med">توجيه</span></td></tr>
+      </table>
+    </div>
+
+    <h5>❓ أسئلة Exam Style متوقعة على هذا الكود</h5>
+    <ul class="styled">
+      <li>لماذا استعملنا <code>prepare()</code> بدل استعلام مباشر؟ → حماية من SQL Injection</li>
+      <li>ما وظيفة <code>clean()</code>؟ → تحويل الرموز HTML لنص آمن (حماية XSS)</li>
+      <li>ماذا يحدث إذا كانت بيانات تسجيل الدخول خاطئة؟ → <code>$row</code> = false → يُعرض "Identifiants incorrects"</li>
+      <li>ما وظيفة <code>session_start()</code>؟ → يبدأ جلسة PHP لتخزين البيانات بين الصفحات</li>
+    </ul>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════
+     CHEAT SHEET
+     ════════════════════════════════════════════ -->
+<a class="anchor" id="cheatsheet"></a>
+<div class="section-header">
+  <div class="icon" style="background:#2a1a2a">📄</div>
+  <h2>المرحلة 6 — Ultimate Revision Sheet</h2>
+  <span class="tag">راجع ليلة الامتحان</span>
+</div>
+
+<div class="cheat-grid">
+
+  <div class="cheat-block">
+    <h4>🐘 PHP — Syntax سريع</h4>
+    <pre><code>&lt;?php ... ?&gt;
+<span class="var">$var</span> = <span class="str">"valeur"</span>;
+<span class="fn">echo</span> <span class="var">$var</span>;
+<span class="kw">if</span>(<span class="var">$x</span> > <span class="num">10</span>) { }
+<span class="kw">switch</span>(<span class="var">$v</span>) { <span class="kw">case</span> <span class="str">"a"</span>: <span class="kw">break</span>; }
+<span class="kw">for</span>(<span class="var">$i</span>=<span class="num">0</span>; <span class="var">$i</span>&lt;<span class="num">5</span>; <span class="var">$i</span>++) { }
+<span class="kw">while</span>(<span class="var">$i</span>&lt;<span class="num">10</span>) { <span class="var">$i</span>++; }
+<span class="kw">foreach</span>(<span class="var">$arr</span> <span class="kw">as</span> <span class="var">$v</span>) { }
+<span class="kw">function</span> <span class="fn">nom</span>(<span class="var">$p</span>) { <span class="kw">return</span> <span class="var">$p</span>; }
+<span class="var">$_POST</span>[<span class="str">'champ'</span>] / <span class="var">$_GET</span>[<span class="str">'champ'</span>]</code></pre>
+  </div>
+
+  <div class="cheat-block">
+    <h4>🎨 CSS — Sélecteurs clés</h4>
+    <pre><code>*        → tous
+h1       → type
+.classe  → classe
+#id      → identifiant
+div p    → descendant
+ul > li  → enfant direct
+h2 + p   → frère adjacent
+A ~ B    → frères suivants
+:hover   → survol
+:focus   → focus
+:not(x)  → sauf x
+:has(x)  → contient x
+:is(a,b) → groupe
+::before / ::after</code></pre>
+  </div>
+
+  <div class="cheat-block">
+    <h4>🗄️ SQL — Commandes essentielles</h4>
+    <pre><code>CREATE DATABASE nom;
+USE nom;
+CREATE TABLE t (id INT PRIMARY KEY, ...);
+INSERT INTO t (col) VALUES (val);
+SELECT * FROM t WHERE cond;
+UPDATE t SET col=val WHERE id=1;
+DELETE FROM t WHERE id=1;
+DROP TABLE t;
+CREATE USER 'u'@'localhost' IDENTIFIED BY 'p';
+GRANT ALL ON db.* TO 'u'@'localhost';
+FLUSH PRIVILEGES;</code></pre>
+  </div>
+
+  <div class="cheat-block">
+    <h4>🛡️ Sécurité — Fonctions clés</h4>
+    <pre><code><span class="cmt">// XSS → htmlspecialchars</span>
+<span class="fn">echo</span> <span class="fn">htmlspecialchars</span>(<span class="var">$v</span>, ENT_QUOTES, <span class="str">'UTF-8'</span>);
+
+<span class="cmt">// SQL Injection → PDO prepare</span>
+<span class="var">$s</span> = <span class="var">$pdo</span>-><span class="fn">prepare</span>(<span class="str">"SELECT ... WHERE u=:u"</span>);
+<span class="var">$s</span>-><span class="fn">execute</span>([<span class="str">':u'</span>=><span class="var">$user</span>]);
+
+<span class="cmt">// Session</span>
+<span class="fn">session_start</span>();
+<span class="var">$_SESSION</span>[<span class="str">'key'</span>] = <span class="str">'value'</span>;
+<span class="fn">session_destroy</span>();</code></pre>
+  </div>
+
+  <div class="cheat-block">
+    <h4>🧩 POO — Résumé</h4>
+    <pre><code><span class="kw">class</span> <span class="fn">Animal</span> {
+    <span class="kw">public</span> <span class="var">$nom</span>;
+    <span class="kw">public function</span> <span class="fn">__construct</span>(<span class="var">$n</span>) {
+        <span class="var">$this</span>->nom = <span class="var">$n</span>;
+    }
+    <span class="kw">public function</span> <span class="fn">parler</span>() {
+        <span class="kw">return</span> <span class="str">"..."</span>;
+    }
+}
+<span class="kw">class</span> <span class="fn">Chien</span> <span class="kw">extends</span> <span class="fn">Animal</span> {
+    <span class="kw">public function</span> <span class="fn">parler</span>() {
+        <span class="kw">return</span> <span class="str">"Woof!"</span>; <span class="cmt">// override</span>
+    }
+}
+<span class="var">$d</span> = <span class="kw">new</span> <span class="fn">Chien</span>(<span class="str">"Rex"</span>);
+<span class="fn">echo</span> <span class="var">$d</span>-><span class="fn">parler</span>(); <span class="cmt">// Woof!</span></code></pre>
+  </div>
+
+  <div class="cheat-block">
+    <h4>📦 BDD — Contraintes SQL</h4>
+    <pre><code>PRIMARY KEY     → unique + NOT NULL
+FOREIGN KEY     → lien entre tables
+UNIQUE          → pas de doublons
+NOT NULL        → obligatoire
+CHECK(cond)     → condition
+DEFAULT val     → valeur par défaut
+AUTO_INCREMENT  → +1 automatique
+
+<span class="cmt">-- FOREIGN KEY exemple</span>
+FOREIGN KEY (id_mod)
+REFERENCES module(id_module)
+ON DELETE CASCADE</code></pre>
+  </div>
+
+</div>
+
+<div class="card" style="margin-top:20px">
+  <h3>🚨 أكثر الأخطاء شيوعًا في الامتحان</h3>
+  <div class="grid-2">
+    <div>
+      <h4 style="color:var(--accent2);margin-bottom:10px">في PHP:</h4>
+      <ul class="styled">
+        <li>نسيان <code>;</code> في آخر السطر</li>
+        <li>كتابة <code>break</code> خارج switch/for</li>
+        <li>نسيان <code>break</code> داخل switch → fall-through</li>
+        <li>الخلط بين <code>echo</code> و <code>print</code></li>
+        <li>الخلط بين <code>=</code> (تعيين) و <code>==</code> (مقارنة)</li>
+        <li>نسيان <code>$</code> أمام المتغير</li>
+        <li>استخدام GET للبيانات الحساسة بدل POST</li>
+      </ul>
+    </div>
+    <div>
+      <h4 style="color:var(--accent2);margin-bottom:10px">في CSS:</h4>
+      <ul class="styled">
+        <li>الخلط بين <code>.</code> (class) و <code>#</code> (id)</li>
+        <li>نسيان <code>;</code> بعد القيمة</li>
+        <li>الخلط بين <code>margin</code> و <code>padding</code></li>
+        <li>الخلط بين <code>display:none</code> و <code>visibility:hidden</code></li>
+        <li>الخلط بين <code>+</code> (أخ مجاور) و <code>~</code> (كل الإخوة)</li>
+        <li>كتابة <code>::placeholder</code> مع margin/padding (لا يعمل)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <h3>🔥 أسئلة نظرية مع إجاباتها — الأكثر احتمالًا</h3>
+
+  <div class="qcm">
+    <div class="q">س: ما الفرق بين GET و POST في PHP؟</div>
+    <div class="ans">✅ GET: البيانات تظهر في URL، مناسب للبحث وغير آمن للبيانات الحساسة. POST: البيانات مخفية في جسم الطلب، أكثر أمانًا لكلمات المرور والنماذج.</div>
+  </div>
+
+  <div class="qcm">
+    <div class="q">س: ما الفرق بين include و require في PHP؟</div>
+    <div class="ans">✅ include: إذا لم يجد الملف يُعطي Warning ويكمل. require: إذا لم يجد الملف يُعطي Fatal Error ويوقف التنفيذ تمامًا.</div>
+  </div>
+
+  <div class="qcm">
+    <div class="q">س: لماذا نستعمل prepare() بدل استعلام مباشر؟</div>
+    <div class="ans">✅ prepare() يفصل كود SQL عن البيانات، مما يمنع SQL Injection. حتى لو أدخل المستخدم ' OR 1=1 فلن تُنفَّذ كـ SQL.</div>
+  </div>
+
+  <div class="qcm">
+    <div class="q">س: ما وظيفة htmlspecialchars() ؟</div>
+    <div class="ans">✅ تُحوّل الرموز HTML الخاصة (مثل &lt; &gt; &amp; " ') إلى entities HTML آمنة. هذا يمنع هجوم XSS لأن &lt;script&gt; يُعرض كنص ولا يُنفَّذ.</div>
+  </div>
+
+  <div class="qcm">
+    <div class="q">س: ما الفرق بين display:none و visibility:hidden ؟</div>
+    <div class="ans">✅ display:none يُزيل العنصر تمامًا من التدفق ولا يشغل مساحة. visibility:hidden يُخفي العنصر لكنه يظل يشغل مساحته في الصفحة.</div>
+  </div>
+
+  <div class="qcm">
+    <div class="q">س: ما الفرق بين + و ~ في CSS؟</div>
+    <div class="ans">✅ h2 + p يستهدف p الذي يأتي مباشرة بعد h2 (أخ مجاور واحد فقط). h2 ~ p يستهدف كل عناصر p الإخوة التي تأتي بعد h2 (مهما كان عددها).</div>
+  </div>
+
+  <div class="qcm">
+    <div class="q">س: ما هو SQL Injection؟ كيف نحمي منه؟</div>
+    <div class="ans">✅ هجوم يُدخل فيه المهاجم كود SQL في حقل نص (مثل ' OR '1'='1) لتغيير سلوك الاستعلام. الحماية: استخدام PDO مع prepare() و execute() لفصل الكود عن البيانات.</div>
+  </div>
+
+  <div class="qcm">
+    <div class="q">س: ما هو XSS؟ كيف نحمي منه؟</div>
+    <div class="ans">✅ هجوم يُدخل فيه المهاجم &lt;script&gt; في حقل نص لتنفيذ كود JS في متصفح الضحية (سرقة cookies، redirect). الحماية: htmlspecialchars() عند عرض أي بيانات من المستخدم.</div>
+  </div>
+
+  <div class="qcm">
+    <div class="q">س: ما هو Trigger في MySQL؟</div>
+    <div class="ans">✅ Trigger هو كود SQL يُنفَّذ تلقائيًا عند حدوث حدث (BEFORE/AFTER INSERT, UPDATE, DELETE). يستخدم OLD للقيمة القديمة و NEW للقيمة الجديدة. لا يُستدعى مباشرة من PHP.</div>
+  </div>
+
+  <div class="qcm">
+    <div class="q">س: ما الأركان الثلاثة لـ POO؟</div>
+    <div class="ans">✅ Encapsulation (التغليف: حماية البيانات بـ private) + Héritage (الوراثة: class Child extends Parent) + Polymorphisme (تعدد الأشكال: نفس الدالة بتصرفات مختلفة في الأصناف الفرعية).</div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════
+     PLAN DE RÉVISION
+     ════════════════════════════════════════════ -->
+<a class="anchor" id="plan"></a>
+<div class="section-header">
+  <div class="icon" style="background:#1a2a1f">🚀</div>
+  <h2>المرحلة 7 — خطة النجاح السريع</h2>
+  <span class="tag">3 → 5 أيام مكثفة</span>
+</div>
+
+<div class="card">
+  <h3>📅 جدول المراجعة المكثفة</h3>
+  <div class="timeline">
+    <div class="tl-item">
+      <span class="tl-day">اليوم 1</span>
+      <div>
+        <strong>PHP الأساسيات (الأهم)</strong><br>
+        <span class="text-muted">راجع: Variables, Conditions, Switch, Boucles (for/while/foreach), GET/POST, Functions.</span><br>
+        <span class="text-muted">تدرّب: حل تمارين TP1 PHP يدويًا على الورق. اكتب كل مثال بيدك.</span>
+      </div>
+    </div>
+    <div class="tl-item">
+      <span class="tl-day">اليوم 2</span>
+      <div>
+        <strong>CSS — Sélecteurs + Propriétés</strong><br>
+        <span class="text-muted">راجع: جدول السيليكتورات كامل، خصائص النص، الخلفية، الحدود، Box Model.</span><br>
+        <span class="text-muted">تدرّب: أعد حل تمارين TP6 و TP7 على الورق. ركّز على :has(), :not(), +, ~.</span>
+      </div>
+    </div>
+    <div class="tl-item">
+      <span class="tl-day">اليوم 3</span>
+      <div>
+        <strong>BDD + SQL + Sécurité</strong><br>
+        <span class="text-muted">راجع: أوامر SQL الأساسية، CREATE TABLE مع القيود، connexion PDO.</span><br>
+        <span class="text-muted">راجع: جدول الهجمات (8 هجمات)، SQL Injection + XSS بالتفصيل، شرح PDO prepare/execute.</span>
+      </div>
+    </div>
+    <div class="tl-item">
+      <span class="tl-day">اليوم 4</span>
+      <div>
+        <strong>POO + Triggers + Contraintes + PHP2</strong><br>
+        <span class="text-muted">راجع: الأركان الثلاثة لـ POO، Triggers (BEFORE/AFTER، NEW/OLD)، قيود BDD، include/require، Sessions.</span>
+      </div>
+    </div>
+    <div class="tl-item">
+      <span class="tl-day">اليوم 5</span>
+      <div>
+        <strong>مراجعة + تمارين شاملة</strong><br>
+        <span class="text-muted">حل التمارين الأربعة في هذه الوثيقة. راجع ورقة المراجعة. ركّز على ما تجده صعبًا.</span>
+      </div>
+    </div>
+    <div class="tl-item">
+      <span class="tl-day">الليلة</span>
+      <div>
+        <strong>مراجعة خفيفة قبل الامتحان</strong><br>
+        <span class="text-muted">فقط: جدول الهجمات، جدول SQL، جدول السيليكتورات، وظيفة prepare()/execute()، الفرق GET/POST.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <h3>🎯 أقل مجموعة دروس تعطي أكبر نتيجة (80/20)</h3>
+  <div class="callout success">
+    <span class="ico">🏆</span>
+    <div>إذا راجعت فقط هذه النقاط ستحصل على معظم النقاط:</div>
+  </div>
+  <div class="grid-2" style="margin-top:12px">
+    <div>
+      <ul class="styled">
+        <li>✅ أنواع السيليكتورات CSS (type، class، id، descendant، child، adjacent، sibling)</li>
+        <li>✅ PHP: variables + if/else + switch + for/while/foreach + functions + GET/POST</li>
+        <li>✅ SQL Injection (الهجوم + الحماية بـ PDO)</li>
+        <li>✅ XSS (الهجوم + htmlspecialchars)</li>
+      </ul>
+    </div>
+    <div>
+      <ul class="styled">
+        <li>✅ أوامر SQL: CREATE DATABASE/TABLE، INSERT، SELECT، UPDATE، DELETE</li>
+        <li>✅ connexion PDO: new PDO() + try/catch + prepare() + execute()</li>
+        <li>✅ POO: définitions (Classe، Objet، Méthode، Héritage)</li>
+        <li>✅ الفرق بين include و require</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <h3>✅ كيف أعرف أنني أصبحت جاهزًا؟</h3>
+  <ul class="styled">
+    <li>تستطيع الإجابة على أسئلة "ماذا يفعل هذا الكود؟" في PHP بدون تفكير طويل</li>
+    <li>تستطيع كتابة الـ sélecteur المناسب لأي وصف (TP6 style) في أقل من دقيقة</li>
+    <li>تعرف الفرق بين SQL Injection و XSS وكيفية الحماية منهما</li>
+    <li>تستطيع كتابة CREATE TABLE مع PRIMARY KEY، NOT NULL، FOREIGN KEY</li>
+    <li>تستطيع شرح ما تفعله prepare() و execute() سطرًا بسطر</li>
+    <li>تعرف الأركان الثلاثة لـ POO مع مثال لكل ركن</li>
+  </ul>
+</div>
+
+<hr>
+<div style="text-align:center;padding:30px;color:var(--text2);font-size:0.85rem">
+  📚 هذه الوثيقة تُغطي كامل ملفات <strong>cours_final_techweb_S2.zip</strong> و <strong>tp_web.zip</strong><br>
+  بالتوفيق في الامتحان 🎓
+</div>
+
+</main>
+
+<script>
+  // Smooth scroll for nav links
+  document.querySelectorAll('nav a').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const id = a.getAttribute('href').slice(1);
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
+</body>
+</html>
